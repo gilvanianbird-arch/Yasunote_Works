@@ -19,8 +19,14 @@
             padding: 2rem 1rem;
             text-align: center;
         }
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
         .logo {
-            width: 15px;
+            width: 40px;
             height: auto;
             display: block;
             margin: 0 auto 1rem;
@@ -55,10 +61,12 @@
 <body>
 
 <header>
-    <img src="FC73D9B7-3E3F-43B0-98D0-4166892BCEB7.PNG"
+    <div class="header-inner">
+        <img src="FC73D9B7-3E3F-43B0-98D0-4166892BCEB7.PNG"
             alt="Yasunote Works ロゴ"
-        class = "logo">
-    <h1>Yasunote Works</h1>
+            class = "logo">
+        <h1>Yasunote Works</h1>
+    </div>
     <p>クラウドソーシングを通じて、確かな価値をカタチに。</p>
 </header>
 
