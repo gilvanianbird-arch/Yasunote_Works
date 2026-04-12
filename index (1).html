@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yasunote Works</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600&family=Noto+Sans+JP:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --ink:#1a1a1a;
+    --muted:#5a5a5a;
+    --subtle:#909090;
+    --line:#d8d8d8;
+    --teal:#0F6E56;
+    --teal-light:#E1F5EE;
+    --teal-mid:#1D9E75;
+    --bg:#f8f7f4;
+    --white:#ffffff;
+  }
+  body{
+    font-family:'Noto Sans JP',sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    font-size:15px;
+    line-height:1.8;
+  }
+
+  /* ── NAV ── */
+  nav{
+    position:sticky;top:0;z-index:100;
+    background:rgba(248,247,244,0.9);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+    padding:14px 40px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .nav-logo{
+    display:flex;align-items:center;gap:8px;
+    text-decoration:none;
+  }
+  .nav-logo img{
+    height:28px;width:28px;object-fit:contain;
+  }
+  .nav-logo-text{
+    font-family:'DM Mono',monospace;
+    font-size:13px;letter-spacing:.05em;
+    color:var(--ink);
+    font-weight:400;
+  }
+  .nav-links{display:flex;gap:28px;}
+  .nav-links a{
+    font-size:13px;color:var(--muted);
+    text-decoration:none;letter-spacing:.05em;
+    transition:color .2s;
+  }
+  .nav-links a:hover{color:var(--ink);}
+
+  /* ── HERO ── */
+  .hero{
+    max-width:760px;margin:0 auto;
+    padding:80px 40px 60px;
+  }
+  .hero-eyebrow{
+    display:flex;align-items:center;gap:12px;
+    margin-bottom:24px;
+  }
+  .hero-eyebrow img{
+    height:44px;width:44px;object-fit:contain;
+  }
+  .hero-eyebrow-text{
+    font-family:'DM Mono',monospace;
+    font-size:13px;letter-spacing:.12em;
+    color:var(--muted);
+  }
+  .hero-name{
+    font-family:'Noto Serif JP',serif;
+    font-size:clamp(32px,5vw,52px);
+    font-weight:600;
+    line-height:1.25;
+    margin-bottom:24px;
+    letter-spacing:-.01em;
+  }
+  .hero-name span{color:var(--teal);}
+  .hero-lead{
+    font-size:16px;color:var(--muted);
+    line-height:1.9;max-width:580px;
+    margin-bottom:36px;
+  }
+  .tag-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:40px;}
+  .tag{
+    font-family:'DM Mono',monospace;
+    font-size:11px;letter-spacing:.08em;
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:5px 12px;color:var(--muted);
+  }
+  .tag.hi{
+    background:var(--teal-light);
+    border-color:#9FE1CB;
+    color:var(--teal);
+  }
+  .hero-badge{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--teal);color:#fff;
+    font-size:13px;padding:10px 20px;
+    border-radius:6px;text-decoration:none;
+    letter-spacing:.03em;
+  }
+
+  /* ── DIVIDER ── */
+  .divider{
+    max-width:760px;margin:0 auto;
+    padding:0 40px;
+    border-top:1px solid var(--line);
+  }
+
+  /* ── SECTION ── */
+  section{max-width:760px;margin:0 auto;padding:60px 40px;}
+  .section-label{
+    font-family:'DM Mono',monospace;
+    font-size:11px;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--subtle);
+    margin-bottom:32px;
+  }
+
+  /* ── ABOUT ── */
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  .about-card{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:24px;
+  }
+  .about-card h3{
+    font-family:'Noto Serif JP',serif;
+    font-size:15px;font-weight:600;
+    margin-bottom:10px;
+  }
+  .about-card p{font-size:14px;color:var(--muted);line-height:1.8;}
+  .about-card.full{grid-column:1/-1;}
+  .about-intro{
+    font-size:15px;color:var(--muted);
+    line-height:1.9;margin-bottom:24px;
+  }
+
+  /* ── SERVICES ── */
+  .service-item{
+    padding:28px 0;
+    border-top:1px solid var(--line);
+  }
+  .service-item:last-child{border-bottom:1px solid var(--line);}
+  .service-head{
+    display:flex;align-items:baseline;
+    justify-content:space-between;
+    margin-bottom:10px;gap:16px;
+  }
+  .service-head h3{
+    font-family:'Noto Serif JP',serif;
+    font-size:17px;font-weight:600;
+  }
+  .service-badge{
+    font-family:'DM Mono',monospace;
+    font-size:10px;letter-spacing:.1em;
+    background:var(--teal-light);color:var(--teal);
+    border:1px solid #9FE1CB;
+    border-radius:4px;padding:3px 10px;white-space:nowrap;
+  }
+  .service-desc{font-size:14px;color:var(--muted);max-width:520px;}
+
+  /* ── STRENGTHS ── */
+  .strength-list{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .strength{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:10px;padding:20px;
+    border-left:3px solid var(--teal-mid);
+  }
+  .strength h4{font-size:14px;font-weight:500;margin-bottom:6px;}
+  .strength p{font-size:13px;color:var(--muted);line-height:1.7;}
+
+  /* ── PORTFOLIO ── */
+  .portfolio-card{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:28px;
+    margin-bottom:16px;
+  }
+  .portfolio-head{
+    display:flex;align-items:center;
+    justify-content:space-between;margin-bottom:12px;
+    gap:12px;flex-wrap:wrap;
+  }
+  .portfolio-title{
+    font-family:'Noto Serif JP',serif;
+    font-size:16px;font-weight:600;
+  }
+  .portfolio-links{display:flex;gap:16px;flex-wrap:wrap;}
+  .portfolio-link{
+    font-family:'DM Mono',monospace;
+    font-size:11px;color:var(--teal);
+    text-decoration:none;letter-spacing:.06em;
+    white-space:nowrap;
+  }
+  .portfolio-link:hover{text-decoration:underline;}
+  .portfolio-desc{font-size:14px;color:var(--muted);margin-bottom:16px;}
+  .stack-row{display:flex;flex-wrap:wrap;gap:6px;}
+  .stack{
+    font-family:'DM Mono',monospace;
+    font-size:11px;
+    background:var(--bg);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:3px 10px;color:var(--muted);
+  }
+  .feature-list{
+    margin:12px 0 16px 0;
+    padding-left:0;list-style:none;
+    display:flex;flex-direction:column;gap:4px;
+  }
+  .feature-list li{
+    font-size:13px;color:var(--muted);
+    padding-left:16px;position:relative;
+  }
+  .feature-list li::before{
+    content:'›';
+    position:absolute;left:0;
+    color:var(--teal-mid);
+  }
+
+  /* ── CONTACT ── */
+  .contact-block{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:40px;
+    text-align:center;
+  }
+  .contact-block h2{
+    font-family:'Noto Serif JP',serif;
+    font-size:22px;font-weight:600;
+    margin-bottom:12px;
+  }
+  .contact-block p{font-size:14px;color:var(--muted);margin-bottom:28px;line-height:1.9;}
+  .contact-links{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;}
+  .contact-btn{
+    font-size:13px;
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:10px 24px;
+    text-decoration:none;color:var(--ink);
+    transition:border-color .2s,color .2s;
+  }
+  .contact-btn:hover{border-color:var(--teal);color:var(--teal);}
+  .contact-btn.primary{
+    background:var(--teal);
+    border-color:var(--teal);
+    color:#fff;
+  }
+  .contact-btn.primary:hover{background:var(--teal-mid);border-color:var(--teal-mid);}
+
+  /* ── FOOTER ── */
+  footer{
+    border-top:1px solid var(--line);
+    padding:24px 40px;
+    text-align:center;
+    font-family:'DM Mono',monospace;
+    font-size:11px;letter-spacing:.08em;
+    color:var(--subtle);
+  }
+
+  @media(max-width:600px){
+    nav{padding:12px 20px;}
+    .nav-links{gap:16px;}
+    .hero,section{padding:48px 20px;}
+    .about-grid,.strength-list{grid-template-columns:1fr;}
+    .about-card.full{grid-column:auto;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">
+    <img src="logo.png" alt="Yasunote Works logo">
+    <span class="nav-logo-text">Yasunote Works</span>
+  </a>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-eyebrow">
+    <img src="logo.png" alt="Yasunote Works logo">
+    <span class="hero-eyebrow-text">Yasunote Works</span>
+  </div>
+  <h1 class="hero-name">現役理学療法士が<br>コードで解く、<span>医療の課題</span></h1>
+  <p class="hero-lead">
+    10年以上の回復期リハビリ臨床経験と独学のWebエンジニアリングを掛け合わせ、
+    医療現場が本当に必要とするシステムを設計・開発します。
+  </p>
+  <div class="tag-row">
+    <span class="tag hi">Next.js</span>
+    <span class="tag hi">TypeScript</span>
+    <span class="tag hi">Supabase</span>
+    <span class="tag">Tailwind CSS</span>
+    <span class="tag">理学療法士免許</span>
+    <span class="tag">10年以上の臨床経験</span>
+  </div>
+  <a class="hero-badge" href="#contact">副業案件 受付中 →</a>
+</div>
+
+<div class="divider"></div>
+
+<section id="about">
+  <p class="section-label">About</p>
+  <p class="about-intro">
+    回復期病棟の理学療法士として10年以上勤務しながら、独学でWebエンジニアリングを習得。
+    「現場を知るエンジニア」という唯一の立ち位置から、要件定義・設計・実装までを一気通貫で担います。
+  </p>
+  <div class="about-grid">
+    <div class="about-card">
+      <h3>臨床専門</h3>
+      <p>回復期リハビリテーション病棟に10年以上従事。FIM評価・退院支援・カンファレンス運営など病棟業務を熟知。</p>
+    </div>
+    <div class="about-card">
+      <h3>技術スタック</h3>
+      <p>Next.js / TypeScript / Supabase / Tailwind CSS / Vercel。実務レベルのWebアプリを設計・実装・デプロイ可能。</p>
+    </div>
+    <div class="about-card full">
+      <h3>ポジショニング</h3>
+      <p>医療ドメイン知識 × ソフトウェア開発力という希少な掛け合わせにより、「何を作ればいいか」から「どう作るか」まで一人でカバー。医療系SaaSや業務効率化ツール開発において、要件のすり合わせコストを大幅に削減します。</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="services">
+  <p class="section-label">Services</p>
+  <div class="service-item">
+    <div class="service-head">
+      <h3>医療系Webアプリ開発</h3>
+      <span class="service-badge">MAIN</span>
+    </div>
+    <p class="service-desc">患者管理・リハビリ記録・退院支援ダッシュボードなど、医療現場に特化したWebアプリの設計・開発。Next.js + Supabaseを中心に、実際の業務フローに即したUXを実現します。</p>
+  </div>
+  <div class="service-item">
+    <div class="service-head">
+      <h3>業務効率化ツール構築</h3>
+      <span class="service-badge">AVAILABLE</span>
+    </div>
+    <p class="service-desc">医療・介護事業所向けの入力自動化・集計ダッシュボード・アラート通知機能の実装。現場目線で「本当に使われるツール」を提案・開発します。</p>
+  </div>
+  <div class="service-item">
+    <div class="service-head">
+      <h3>医療×ITコンサルティング</h3>
+      <span class="service-badge">AVAILABLE</span>
+    </div>
+    <p class="service-desc">医療系スタートアップや開発チームへの臨床ドメイン提供。仕様レビュー・ユーザーストーリー作成・現場ヒアリング代行など、医療知識を活かした技術支援。</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="strengths">
+  <p class="section-label">Why choose</p>
+  <div class="strength-list">
+    <div class="strength">
+      <h4>要件定義の精度が高い</h4>
+      <p>臨床経験から「現場が何を必要としているか」を正確に把握。仕様の抜け漏れを最小化します。</p>
+    </div>
+    <div class="strength">
+      <h4>医療用語・制度への深い理解</h4>
+      <p>FIM・ADL・退院支援加算など医療固有の概念をエンジニアに翻訳する必要がありません。</p>
+    </div>
+    <div class="strength">
+      <h4>実務レベルの開発スキル</h4>
+      <p>患者管理Webアプリを独力で設計・実装・Vercelデプロイ済み。即戦力として参画可能。</p>
+    </div>
+    <div class="strength">
+      <h4>迅速なレスポンスと丁寧な確認</h4>
+      <p>クラウドソーシングでの豊富な納品実績。進捗共有・認識合わせを大切にします。</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="portfolio">
+  <p class="section-label">Portfolio</p>
+  <div class="portfolio-card">
+    <div class="portfolio-head">
+      <span class="portfolio-title">回復期病棟 患者管理Webアプリ</span>
+      <div class="portfolio-links">
+        <a class="portfolio-link" href="https://rehab-ward-lp.vercel.app/" target="_blank">デモを見る →</a>
+        <a class="portfolio-link" href="https://github.com/gilvanianbird-arch/rehab-ward-management" target="_blank">GitHub →</a>
+      </div>
+    </div>
+    <p class="portfolio-desc">
+      実際の回復期リハビリ病棟業務をベースに設計した患者管理システム。FIMスコア管理・退院促進スコア・カンファレンス日程アラートなど、現場で求められる機能を網羅。
+    </p>
+    <ul class="feature-list">
+      <li>FIMスコアのモーダルUI入力 &amp; 自動集計</li>
+      <li>疾患別パラメータによる実績指数自動算出</li>
+      <li>退院促進スコア自動ソート</li>
+      <li>FIMプラトー検出 &amp; カンファアラート</li>
+      <li>JST対応タイムゾーン処理（Supabase Singapore → 日本時間）</li>
+    </ul>
+    <div class="stack-row">
+      <span class="stack">Next.js</span>
+      <span class="stack">TypeScript</span>
+      <span class="stack">Supabase</span>
+      <span class="stack">Tailwind CSS</span>
+      <span class="stack">Vercel</span>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="contact">
+  <div class="contact-block">
+    <h2>医療系副業案件、受付中</h2>
+    <p>医療・介護・ヘルスケア領域のWebシステム開発にご興味のある方は<br>お気軽にお問い合わせください。</p>
+    <div class="contact-links">
+      <a class="contact-btn primary" href="https://www.crowdworks.jp" target="_blank">Crowdworks でのご依頼</a>
+      <a class="contact-btn" href="https://twitter.com/" target="_blank">X (Twitter)</a>
+      <a class="contact-btn" href="https://note.com/" target="_blank">note</a>
+    </div>
+  </div>
+</section>
+
+<footer>© 2025 Yasunote Works — All Rights Reserved</footer>
+
+</body>
+</html>
