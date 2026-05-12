@@ -29,7 +29,7 @@
   /* ── NAV ── */
   nav{
     position:sticky;top:0;z-index:100;
-    background:rgba(248,247,244,0.9);
+    background:rgba(248,247,244,0.92);
     backdrop-filter:blur(8px);
     border-bottom:1px solid var(--line);
     padding:14px 40px;
@@ -39,14 +39,11 @@
     display:flex;align-items:center;gap:8px;
     text-decoration:none;
   }
-  .nav-logo img{
-    height:28px;width:28px;object-fit:contain;
-  }
+  .nav-logo img{height:28px;width:28px;object-fit:contain;}
   .nav-logo-text{
     font-family:'DM Mono',monospace;
     font-size:13px;letter-spacing:.05em;
-    color:var(--ink);
-    font-weight:400;
+    color:var(--ink);font-weight:400;
   }
   .nav-links{display:flex;gap:28px;}
   .nav-links a{
@@ -58,43 +55,46 @@
 
   /* ── HERO ── */
   .hero{
-    max-width:760px;margin:0 auto;
+    max-width:960px;margin:0 auto;
     padding:80px 40px 60px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:48px;
+    align-items:center;
   }
+  .hero-left{}
   .hero-eyebrow{
-    display:flex;align-items:center;gap:12px;
-    margin-bottom:24px;
+    display:flex;align-items:center;gap:10px;
+    margin-bottom:20px;
   }
-  .hero-eyebrow img{
-    height:128px;width:128px;object-fit:contain;
-  }
+  .hero-eyebrow img{height:32px;width:32px;object-fit:contain;}
   .hero-eyebrow-text{
     font-family:'DM Mono',monospace;
-    font-size:24px;letter-spacing:.12em;
+    font-size:13px;letter-spacing:.1em;
     color:var(--muted);
   }
   .hero-name{
     font-family:'Noto Serif JP',serif;
-    font-size:clamp(32px,5vw,52px);
+    font-size:clamp(28px,4vw,44px);
     font-weight:600;
-    line-height:1.25;
-    margin-bottom:24px;
+    line-height:1.3;
+    margin-bottom:20px;
     letter-spacing:-.01em;
   }
   .hero-name span{color:var(--teal);}
   .hero-lead{
-    font-size:16px;color:var(--muted);
-    line-height:1.9;max-width:580px;
-    margin-bottom:36px;
+    font-size:14px;color:var(--muted);
+    line-height:1.9;
+    margin-bottom:28px;
   }
-  .tag-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:40px;}
+  .tag-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px;}
   .tag{
     font-family:'DM Mono',monospace;
     font-size:11px;letter-spacing:.08em;
     background:var(--white);
     border:1px solid var(--line);
     border-radius:4px;
-    padding:5px 12px;color:var(--muted);
+    padding:4px 10px;color:var(--muted);
   }
   .tag.hi{
     background:var(--teal-light);
@@ -104,20 +104,96 @@
   .hero-badge{
     display:inline-flex;align-items:center;gap:8px;
     background:var(--teal);color:#fff;
-    font-size:13px;padding:10px 20px;
+    font-size:13px;padding:10px 22px;
     border-radius:6px;text-decoration:none;
     letter-spacing:.03em;
+    transition:background .2s;
+  }
+  .hero-badge:hover{background:var(--teal-mid);}
+
+  /* ── HERO RIGHT: モックアップ ── */
+  .hero-right{
+    position:relative;
+  }
+  .mockup-browser{
+    background:#e8e8e8;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 8px 32px rgba(0,0,0,0.12);
+    border:1px solid #ccc;
+  }
+  .mockup-bar{
+    background:#d4d4d4;
+    padding:8px 12px;
+    display:flex;align-items:center;gap:6px;
+  }
+  .mockup-dot{
+    width:10px;height:10px;border-radius:50%;
+  }
+  .mockup-dot.red{background:#ff5f57;}
+  .mockup-dot.yellow{background:#febc2e;}
+  .mockup-dot.green{background:#28c840;}
+  .mockup-url{
+    margin-left:8px;
+    background:#fff;
+    border-radius:4px;
+    padding:2px 10px;
+    font-size:10px;
+    font-family:'DM Mono',monospace;
+    color:#888;
+    flex:1;
+  }
+  .mockup-img{
+    width:100%;
+    display:block;
+    aspect-ratio:16/9;
+    object-fit:cover;
+    object-position:top;
+  }
+
+  /* ── STATS ── */
+  .stats-bar{
+    background:var(--white);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .stats-inner{
+    max-width:960px;margin:0 auto;
+    padding:28px 40px;
+    display:flex;gap:40px;flex-wrap:wrap;
+    align-items:center;
+    justify-content:flex-start;
+  }
+  .stat-item{
+    display:flex;align-items:baseline;gap:6px;
+  }
+  .stat-num{
+    font-family:'DM Mono',monospace;
+    font-size:28px;
+    font-weight:400;
+    color:var(--teal);
+  }
+  .stat-unit{
+    font-size:13px;color:var(--muted);
+  }
+  .stat-label{
+    font-size:12px;color:var(--subtle);
+    margin-left:2px;
+  }
+  .stats-divider{
+    width:1px;height:32px;
+    background:var(--line);
   }
 
   /* ── DIVIDER ── */
   .divider{
-    max-width:760px;margin:0 auto;
+    max-width:960px;margin:0 auto;
     padding:0 40px;
     border-top:1px solid var(--line);
   }
 
   /* ── SECTION ── */
-  section{max-width:760px;margin:0 auto;padding:60px 40px;}
+  section{max-width:960px;margin:0 auto;padding:60px 40px;}
   .section-label{
     font-family:'DM Mono',monospace;
     font-size:11px;letter-spacing:.18em;
@@ -126,7 +202,12 @@
   }
 
   /* ── ABOUT ── */
-  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  .about-intro{
+    font-size:15px;color:var(--muted);
+    line-height:1.9;margin-bottom:24px;
+    max-width:640px;
+  }
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
   .about-card{
     background:var(--white);
     border:1px solid var(--line);
@@ -140,10 +221,6 @@
   }
   .about-card p{font-size:14px;color:var(--muted);line-height:1.8;}
   .about-card.full{grid-column:1/-1;}
-  .about-intro{
-    font-size:15px;color:var(--muted);
-    line-height:1.9;margin-bottom:24px;
-  }
 
   /* ── SERVICES ── */
   .service-item{
@@ -167,7 +244,7 @@
     border:1px solid #9FE1CB;
     border-radius:4px;padding:3px 10px;white-space:nowrap;
   }
-  .service-desc{font-size:14px;color:var(--muted);max-width:520px;}
+  .service-desc{font-size:14px;color:var(--muted);max-width:560px;}
 
   /* ── STRENGTHS ── */
   .strength-list{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
@@ -181,23 +258,55 @@
   .strength p{font-size:13px;color:var(--muted);line-height:1.7;}
 
   /* ── PORTFOLIO ── */
+  .portfolio-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+  }
   .portfolio-card{
     background:var(--white);
     border:1px solid var(--line);
     border-radius:12px;
-    padding:28px;
-    margin-bottom:16px;
+    overflow:hidden;
+    transition:box-shadow .2s, transform .2s;
   }
-  .portfolio-head{
-    display:flex;align-items:center;
-    justify-content:space-between;margin-bottom:12px;
-    gap:12px;flex-wrap:wrap;
+  .portfolio-card:hover{
+    box-shadow:0 6px 24px rgba(0,0,0,0.10);
+    transform:translateY(-2px);
+  }
+  .portfolio-thumb{
+    width:100%;
+    aspect-ratio:16/10;
+    object-fit:cover;
+    object-position:top;
+    display:block;
+    border-bottom:1px solid var(--line);
+    background:#e8e8e8;
+  }
+  .portfolio-body{padding:20px;}
+  .portfolio-type{
+    font-family:'DM Mono',monospace;
+    font-size:10px;letter-spacing:.12em;
+    color:var(--teal);
+    text-transform:uppercase;
+    margin-bottom:6px;
   }
   .portfolio-title{
     font-family:'Noto Serif JP',serif;
-    font-size:16px;font-weight:600;
+    font-size:15px;font-weight:600;
+    margin-bottom:8px;
+    line-height:1.4;
   }
-  .portfolio-links{display:flex;gap:16px;flex-wrap:wrap;}
+  .portfolio-desc{
+    font-size:13px;color:var(--muted);
+    line-height:1.7;
+    margin-bottom:14px;
+  }
+  .portfolio-links{
+    display:flex;gap:14px;
+    margin-bottom:14px;
+    flex-wrap:wrap;
+  }
   .portfolio-link{
     font-family:'DM Mono',monospace;
     font-size:11px;color:var(--teal);
@@ -205,29 +314,14 @@
     white-space:nowrap;
   }
   .portfolio-link:hover{text-decoration:underline;}
-  .portfolio-desc{font-size:14px;color:var(--muted);margin-bottom:16px;}
   .stack-row{display:flex;flex-wrap:wrap;gap:6px;}
   .stack{
     font-family:'DM Mono',monospace;
-    font-size:11px;
+    font-size:10px;
     background:var(--bg);
     border:1px solid var(--line);
     border-radius:4px;
-    padding:3px 10px;color:var(--muted);
-  }
-  .feature-list{
-    margin:12px 0 16px 0;
-    padding-left:0;list-style:none;
-    display:flex;flex-direction:column;gap:4px;
-  }
-  .feature-list li{
-    font-size:13px;color:var(--muted);
-    padding-left:16px;position:relative;
-  }
-  .feature-list li::before{
-    content:'›';
-    position:absolute;left:0;
-    color:var(--teal-mid);
+    padding:2px 8px;color:var(--muted);
   }
 
   /* ── CONTACT ── */
@@ -235,7 +329,7 @@
     background:var(--white);
     border:1px solid var(--line);
     border-radius:12px;
-    padding:40px;
+    padding:48px 40px;
     text-align:center;
   }
   .contact-block h2{
@@ -271,12 +365,21 @@
     color:var(--subtle);
   }
 
-  @media(max-width:600px){
+  @media(max-width:720px){
     nav{padding:12px 20px;}
     .nav-links{gap:16px;}
-    .hero,section{padding:48px 20px;}
-    .about-grid,.strength-list{grid-template-columns:1fr;}
+    .hero{
+      grid-template-columns:1fr;
+      padding:48px 20px 40px;
+      gap:32px;
+    }
+    .hero-right{order:-1;}
+    section{padding:48px 20px;}
+    .about-grid,.strength-list,.portfolio-grid{grid-template-columns:1fr;}
     .about-card.full{grid-column:auto;}
+    .stats-inner{gap:24px;}
+    .stats-divider{display:none;}
+    .contact-block{padding:32px 20px;}
   }
 </style>
 </head>
@@ -295,29 +398,67 @@
   </div>
 </nav>
 
+<!-- ── HERO ── -->
 <div class="hero">
-  <div class="hero-eyebrow">
-    <img src="logo.png" alt="Yasunote Works logo">
-    <span class="hero-eyebrow-text">Yasunote Works</span>
+  <div class="hero-left">
+    <div class="hero-eyebrow">
+      <img src="logo.png" alt="Yasunote Works logo">
+      <span class="hero-eyebrow-text">Yasunote Works</span>
+    </div>
+    <h1 class="hero-name">現役理学療法士が<br>コードで解く、<span>医療の課題</span></h1>
+    <p class="hero-lead">
+      10年以上の回復期リハビリ臨床経験と独学のWebエンジニアリングを掛け合わせ、
+      医療現場が本当に必要とするシステムを設計・開発します。
+    </p>
+    <div class="tag-row">
+      <span class="tag hi">Next.js</span>
+      <span class="tag hi">TypeScript</span>
+      <span class="tag hi">Supabase</span>
+      <span class="tag">Tailwind CSS</span>
+      <span class="tag">理学療法士免許</span>
+      <span class="tag">10年以上の臨床経験</span>
+    </div>
+    <a class="hero-badge" href="#contact">副業案件 受付中 →</a>
   </div>
-  <h1 class="hero-name">現役理学療法士が<br>コードで解く、<span>医療の課題</span></h1>
-  <p class="hero-lead">
-    10年以上の回復期リハビリ臨床経験と独学のWebエンジニアリングを掛け合わせ、
-    医療現場が本当に必要とするシステムを設計・開発します。
-  </p>
-  <div class="tag-row">
-    <span class="tag hi">Next.js</span>
-    <span class="tag hi">TypeScript</span>
-    <span class="tag hi">Supabase</span>
-    <span class="tag">Tailwind CSS</span>
-    <span class="tag">理学療法士免許</span>
-    <span class="tag">10年以上の臨床経験</span>
+  <div class="hero-right">
+    <div class="mockup-browser">
+      <div class="mockup-bar">
+        <span class="mockup-dot red"></span>
+        <span class="mockup-dot yellow"></span>
+        <span class="mockup-dot green"></span>
+        <span class="mockup-url">rehab-ward-management.vercel.app</span>
+      </div>
+      <img class="mockup-img" src="images/rehab-app.png" alt="回復期リハ 患者管理システム">
+    </div>
   </div>
-  <a class="hero-badge" href="#contact">副業案件 受付中 →</a>
+</div>
+
+<!-- ── STATS ── -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <span class="stat-num">10</span>
+      <span class="stat-unit">年以上</span>
+      <span class="stat-label">臨床経験</span>
+    </div>
+    <div class="stats-divider"></div>
+    <div class="stat-item">
+      <span class="stat-num">5</span>
+      <span class="stat-unit">件+</span>
+      <span class="stat-label">制作実績</span>
+    </div>
+    <div class="stats-divider"></div>
+    <div class="stat-item">
+      <span class="stat-num">3</span>
+      <span class="stat-unit">領域</span>
+      <span class="stat-label">Webアプリ・LP・業務ツール</span>
+    </div>
+  </div>
 </div>
 
 <div class="divider"></div>
 
+<!-- ── ABOUT ── -->
 <section id="about">
   <p class="section-label">About</p>
   <p class="about-intro">
@@ -342,6 +483,7 @@
 
 <div class="divider"></div>
 
+<!-- ── SERVICES ── -->
 <section id="services">
   <p class="section-label">Services</p>
   <div class="service-item">
@@ -369,6 +511,7 @@
 
 <div class="divider"></div>
 
+<!-- ── WHY CHOOSE ── -->
 <section id="strengths">
   <p class="section-label">Why choose</p>
   <div class="strength-list">
@@ -393,38 +536,102 @@
 
 <div class="divider"></div>
 
+<!-- ── PORTFOLIO ── -->
 <section id="portfolio">
   <p class="section-label">Portfolio</p>
-  <div class="portfolio-card">
-    <div class="portfolio-head">
-      <span class="portfolio-title">回復期病棟 患者管理Webアプリ</span>
-      <div class="portfolio-links">
-        <a class="portfolio-link" href="https://rehab-ward-lp.vercel.app/" target="_blank">デモを見る →</a>
-        <a class="portfolio-link" href="https://github.com/gilvanianbird-arch/rehab-ward-management" target="_blank">GitHub →</a>
+  <div class="portfolio-grid">
+
+    <div class="portfolio-card">
+      <img class="portfolio-thumb" src="images/rehab-app.png" alt="回復期病棟 患者管理Webアプリ">
+      <div class="portfolio-body">
+        <p class="portfolio-type">Webアプリ</p>
+        <h3 class="portfolio-title">回復期病棟 患者管理Webアプリ</h3>
+        <p class="portfolio-desc">FIMスコア管理・退院促進スコア・カンファアラートなど、回復期リハビリ病棟の業務フローに即した患者管理システム。</p>
+        <div class="portfolio-links">
+          <a class="portfolio-link" href="https://rehab-ward-lp.vercel.app/" target="_blank">デモを見る →</a>
+          <a class="portfolio-link" href="https://github.com/gilvanianbird-arch/rehab-ward-management" target="_blank">GitHub →</a>
+        </div>
+        <div class="stack-row">
+          <span class="stack">Next.js</span>
+          <span class="stack">TypeScript</span>
+          <span class="stack">Supabase</span>
+          <span class="stack">Tailwind CSS</span>
+          <span class="stack">Vercel</span>
+        </div>
       </div>
     </div>
-    <p class="portfolio-desc">
-      実際の回復期リハビリ病棟業務をベースに設計した患者管理システム。FIMスコア管理・退院促進スコア・カンファレンス日程アラートなど、現場で求められる機能を網羅。
-    </p>
-    <ul class="feature-list">
-      <li>FIMスコアのモーダルUI入力 &amp; 自動集計</li>
-      <li>疾患別パラメータによる実績指数自動算出</li>
-      <li>退院促進スコア自動ソート</li>
-      <li>FIMプラトー検出 &amp; カンファアラート</li>
-      <li>JST対応タイムゾーン処理（Supabase Singapore → 日本時間）</li>
-    </ul>
-    <div class="stack-row">
-      <span class="stack">Next.js</span>
-      <span class="stack">TypeScript</span>
-      <span class="stack">Supabase</span>
-      <span class="stack">Tailwind CSS</span>
-      <span class="stack">Vercel</span>
+
+    <div class="portfolio-card">
+      <img class="portfolio-thumb" src="images/shift-scheduler.png" alt="勤務表管理システム">
+      <div class="portfolio-body">
+        <p class="portfolio-type">業務ツール</p>
+        <h3 class="portfolio-title">勤務表管理システム</h3>
+        <p class="portfolio-desc">スタッフの休み希望・必要人数ルールをもとに自動でシフトを生成。手動修正・印刷にも対応した医療・介護施設向けツール。</p>
+        <div class="portfolio-links">
+        </div>
+        <div class="stack-row">
+          <span class="stack">HTML</span>
+          <span class="stack">CSS</span>
+          <span class="stack">JavaScript</span>
+        </div>
+      </div>
     </div>
+
+    <div class="portfolio-card">
+      <img class="portfolio-thumb" src="images/sakura-hospital.png" alt="さくら総合病院 コーポレートサイト">
+      <div class="portfolio-body">
+        <p class="portfolio-type">コーポレートLP</p>
+        <h3 class="portfolio-title">さくら総合病院 サイト</h3>
+        <p class="portfolio-desc">診療科・医師紹介・アクセスを備えた病院向けコーポレートサイト。予約導線・診療時間ページを含むフルページ構成。</p>
+        <div class="portfolio-links">
+        </div>
+        <div class="stack-row">
+          <span class="stack">HTML</span>
+          <span class="stack">CSS</span>
+          <span class="stack">JavaScript</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="portfolio-card">
+      <img class="portfolio-thumb" src="images/lp-lumiere.png" alt="LUMIÈRE ファンデーションLP">
+      <div class="portfolio-body">
+        <p class="portfolio-type">商品LP</p>
+        <h3 class="portfolio-title">LUMIÈRE — 商品LP</h3>
+        <p class="portfolio-desc">高級コスメブランドをイメージした商品LP。ダークトーンの洗練されたデザインと、スクロールアニメーションを実装。</p>
+        <div class="portfolio-links">
+        </div>
+        <div class="stack-row">
+          <span class="stack">HTML</span>
+          <span class="stack">CSS</span>
+          <span class="stack">JavaScript</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="portfolio-card">
+      <img class="portfolio-thumb" src="images/ai-system.png" alt="AI社内システム">
+      <div class="portfolio-body">
+        <p class="portfolio-type">AIアプリ</p>
+        <h3 class="portfolio-title">AI社内システム</h3>
+        <p class="portfolio-desc">ブラウザ上で動作する4部署対応のAIチャットシステム。部門別に自動振り分けするリーダーエージェントを搭載。</p>
+        <div class="portfolio-links">
+        </div>
+        <div class="stack-row">
+          <span class="stack">HTML</span>
+          <span class="stack">CSS</span>
+          <span class="stack">JavaScript</span>
+          <span class="stack">Claude API</span>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
 <div class="divider"></div>
 
+<!-- ── CONTACT ── -->
 <section id="contact">
   <div class="contact-block">
     <h2>医療系副業案件、受付中</h2>
