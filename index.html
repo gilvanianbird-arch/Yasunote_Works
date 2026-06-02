@@ -355,6 +355,67 @@
   }
   .contact-btn.primary:hover{background:var(--teal-mid);border-color:var(--teal-mid);}
 
+  /* ── PORTFOLIO SUB LABEL ── */
+  .portfolio-sub{
+    grid-column:1/-1;
+    font-family:'DM Mono',monospace;
+    font-size:11px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--subtle);
+    padding-bottom:12px;
+    border-bottom:1px solid var(--line);
+    margin-top:16px;
+  }
+  .portfolio-sub:first-child{margin-top:0;}
+
+  /* ── PORTFOLIO META ── */
+  .portfolio-meta{margin-bottom:12px;display:flex;flex-direction:column;gap:5px;}
+  .portfolio-meta-row{display:flex;gap:8px;font-size:13px;line-height:1.6;}
+  .meta-key{
+    font-family:'DM Mono',monospace;font-size:11px;
+    letter-spacing:.06em;color:var(--teal);
+    min-width:72px;flex-shrink:0;padding-top:2px;
+  }
+  .meta-val{color:var(--muted);font-size:13px;}
+
+  /* ── CONTACT FORM ── */
+  .contact-form-wrap{
+    display:grid;grid-template-columns:1fr 1fr;
+    gap:48px;align-items:start;
+  }
+  .contact-form-info h2{
+    font-family:'Noto Serif JP',serif;
+    font-size:22px;font-weight:600;
+    margin-bottom:12px;
+  }
+  .contact-form-info p{
+    font-size:15px;color:var(--muted);
+    line-height:1.9;margin-bottom:24px;
+  }
+  .contact-cta-links{display:flex;flex-direction:column;gap:10px;}
+  .contact-form-box{display:flex;flex-direction:column;gap:12px;}
+  .contact-form-box input,
+  .contact-form-box textarea{
+    width:100%;padding:12px 14px;
+    font-size:14px;font-family:'Noto Sans JP',sans-serif;
+    border:1px solid var(--line);border-radius:6px;
+    background:var(--white);color:var(--ink);
+    outline:none;transition:border-color .2s;
+  }
+  .contact-form-box input:focus,
+  .contact-form-box textarea:focus{border-color:var(--teal);}
+  .contact-form-box textarea{resize:vertical;min-height:130px;}
+  .contact-form-box button{
+    background:var(--teal);color:#fff;border:none;
+    padding:12px 28px;border-radius:6px;
+    font-size:14px;font-family:'Noto Sans JP',sans-serif;
+    cursor:pointer;transition:background .2s;
+    align-self:flex-start;letter-spacing:.03em;
+  }
+  .contact-form-box button:hover{background:var(--teal-mid);}
+  @media(max-width:720px){
+    .contact-form-wrap{grid-template-columns:1fr;}
+  }
+
   /* ── FOOTER ── */
   footer{
     border-top:1px solid var(--line);
@@ -407,7 +468,7 @@
     </div>
     <h1 class="hero-name">現役理学療法士が<br>コードで解く、<span>医療の課題</span></h1>
     <p class="hero-lead">
-      10年以上の回復期リハビリ臨床経験と独学のWebエンジニアリングを掛け合わせ、
+      一般病棟から回復期リハビリ病棟まで幅広く経験した10年以上の臨床キャリアと、独学のWebエンジニアリングを掛け合わせ、
       医療現場が本当に必要とするシステムを設計・開発します。
     </p>
     <div class="tag-row">
@@ -462,17 +523,18 @@
 <section id="about">
   <p class="section-label">About</p>
   <p class="about-intro">
-    回復期病棟の理学療法士として10年以上勤務しながら、独学でWebエンジニアリングを習得。
+    理学療法士として10年以上、一般病棟から回復期リハビリ病棟まで幅広く勤務しながら、独学でWebエンジニアリングを習得。
     「現場を知るエンジニア」という唯一の立ち位置から、要件定義・設計・実装までを一気通貫で担います。
+    また、HTML/CSS/JavaScriptを用いた医療・ヘルスケア特化のLP制作も得意としており、患者目線の導線設計が強みです。
   </p>
   <div class="about-grid">
     <div class="about-card">
       <h3>臨床専門</h3>
-      <p>回復期リハビリテーション病棟に10年以上従事。FIM評価・退院支援・カンファレンス運営など病棟業務を熟知。</p>
+      <p>理学療法士として10年以上、一般病棟・回復期リハビリテーション病棟など多様な現場に従事。FIM評価・退院支援・カンファレンス運営など幅広い病棟業務を熟知。</p>
     </div>
     <div class="about-card">
       <h3>技術スタック</h3>
-      <p>Next.js / TypeScript / Supabase / Tailwind CSS / Vercel。実務レベルのWebアプリを設計・実装・デプロイ可能。</p>
+      <p>Next.js / TypeScript / Supabase / Tailwind CSS / Vercel。HTML/CSS/JSによるLP制作から実務レベルのWebアプリ開発まで対応。</p>
     </div>
     <div class="about-card full">
       <h3>ポジショニング</h3>
@@ -488,8 +550,15 @@
   <p class="section-label">Services</p>
   <div class="service-item">
     <div class="service-head">
-      <h3>医療系Webアプリ開発</h3>
+      <h3>医療・ヘルスケア特化 LP制作</h3>
       <span class="service-badge">MAIN</span>
+    </div>
+    <p class="service-desc">クリニック・病院・ヘルスケア事業者向けのLP制作・LPコーディング。理学療法士として10年以上培った患者目線から、不安を取り除く導線設計・わかりやすいCTA・診療科の整理を実現します。HTML/CSS/JavaScript、レスポンシブ対応。</p>
+  </div>
+  <div class="service-item">
+    <div class="service-head">
+      <h3>医療系Webアプリ開発</h3>
+      <span class="service-badge">AVAILABLE</span>
     </div>
     <p class="service-desc">患者管理・リハビリ記録・退院支援ダッシュボードなど、医療現場に特化したWebアプリの設計・開発。Next.js + Supabaseを中心に、実際の業務フローに即したUXを実現します。</p>
   </div>
@@ -541,22 +610,69 @@
   <p class="section-label">Portfolio</p>
   <div class="portfolio-grid">
 
+    <!-- LP / サイト制作 -->
+    <p class="portfolio-sub">LP / サイト制作</p>
+
+    <div class="portfolio-card">
+      <img class="portfolio-thumb" src="images/sakura-hospital.png" alt="さくら総合病院 コーポレートサイト">
+      <div class="portfolio-body">
+        <p class="portfolio-type">医療機関向けLP</p>
+        <h3 class="portfolio-title">さくら総合病院 サイト</h3>
+        <p class="portfolio-desc">診療科・医師紹介・アクセスを備えた病院向けコーポレートサイト。予約導線・診療時間・患者の声を含むフルページ構成。</p>
+        <div class="portfolio-meta">
+          <div class="portfolio-meta-row"><span class="meta-key">制作期間</span><span class="meta-val">約2週間</span></div>
+          <div class="portfolio-meta-row"><span class="meta-key">使用技術</span><span class="meta-val">HTML / CSS / JavaScript</span></div>
+          <div class="portfolio-meta-row"><span class="meta-key">こだわり</span><span class="meta-val">理学療法士の経験から「患者が不安なく来院できる」導線を設計。受診ステップフロー・症状別診療科ガイド・フローティングCTAを実装。</span></div>
+        </div>
+        <div class="portfolio-links">
+          <a class="portfolio-link" href="https://gilvanianbird-arch.github.io/my-second-web-app/" target="_blank">デモを見る →</a>
+        </div>
+        <div class="stack-row">
+          <span class="stack">HTML</span><span class="stack">CSS</span><span class="stack">JavaScript</span><span class="stack">レスポンシブ対応</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="portfolio-card">
+      <img class="portfolio-thumb" src="images/lp-lumiere.png" alt="LUMIÈRE ファンデーションLP">
+      <div class="portfolio-body">
+        <p class="portfolio-type">商品LP</p>
+        <h3 class="portfolio-title">LUMIÈRE — 商品LP</h3>
+        <p class="portfolio-desc">高級コスメブランドをイメージした商品LP。ダークトーンの洗練されたデザインとスクロールアニメーションを実装。</p>
+        <div class="portfolio-meta">
+          <div class="portfolio-meta-row"><span class="meta-key">制作期間</span><span class="meta-val">約1週間</span></div>
+          <div class="portfolio-meta-row"><span class="meta-key">使用技術</span><span class="meta-val">HTML / CSS / JavaScript</span></div>
+          <div class="portfolio-meta-row"><span class="meta-key">こだわり</span><span class="meta-val">ダークトーン×スクロールアニメーションで高級感を演出。商品の世界観をビジュアルで伝えることを優先したデザイン設計。</span></div>
+        </div>
+        <div class="portfolio-links">
+          <a class="portfolio-link" href="https://gilvanianbird-arch.github.io/portfolio-lp/" target="_blank">デモを見る →</a>
+        </div>
+        <div class="stack-row">
+          <span class="stack">HTML</span><span class="stack">CSS</span><span class="stack">JavaScript</span><span class="stack">レスポンシブ対応</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Webアプリ / 業務ツール -->
+    <p class="portfolio-sub">Webアプリ / 業務ツール</p>
+
     <div class="portfolio-card">
       <img class="portfolio-thumb" src="images/rehab-app.png" alt="回復期病棟 患者管理Webアプリ">
       <div class="portfolio-body">
         <p class="portfolio-type">Webアプリ</p>
         <h3 class="portfolio-title">回復期病棟 患者管理Webアプリ</h3>
         <p class="portfolio-desc">FIMスコア管理・退院促進スコア・カンファアラートなど、回復期リハビリ病棟の業務フローに即した患者管理システム。</p>
+        <div class="portfolio-meta">
+          <div class="portfolio-meta-row"><span class="meta-key">制作期間</span><span class="meta-val">約2週間</span></div>
+          <div class="portfolio-meta-row"><span class="meta-key">使用技術</span><span class="meta-val">Next.js / TypeScript / Supabase / Tailwind CSS</span></div>
+          <div class="portfolio-meta-row"><span class="meta-key">こだわり</span><span class="meta-val">現場のFIM評価・退院支援・カンファレンス業務を忠実に再現。データ連動の自動アラートで見落としゼロを目指した設計。</span></div>
+        </div>
         <div class="portfolio-links">
           <a class="portfolio-link" href="https://rehab-ward-lp.vercel.app/" target="_blank">デモを見る →</a>
           <a class="portfolio-link" href="https://github.com/gilvanianbird-arch/rehab-ward-management" target="_blank">GitHub →</a>
         </div>
         <div class="stack-row">
-          <span class="stack">Next.js</span>
-          <span class="stack">TypeScript</span>
-          <span class="stack">Supabase</span>
-          <span class="stack">Tailwind CSS</span>
-          <span class="stack">Vercel</span>
+          <span class="stack">Next.js</span><span class="stack">TypeScript</span><span class="stack">Supabase</span><span class="stack">Tailwind CSS</span><span class="stack">Vercel</span>
         </div>
       </div>
     </div>
@@ -567,47 +683,16 @@
         <p class="portfolio-type">業務ツール</p>
         <h3 class="portfolio-title">勤務表管理システム</h3>
         <p class="portfolio-desc">スタッフの休み希望・必要人数ルールをもとに自動でシフトを生成。手動修正・印刷にも対応した医療・介護施設向けツール。</p>
+        <div class="portfolio-meta">
+          <div class="portfolio-meta-row"><span class="meta-key">制作期間</span><span class="meta-val">約1ヶ月</span></div>
+          <div class="portfolio-meta-row"><span class="meta-key">使用技術</span><span class="meta-val">HTML / CSS / JavaScript</span></div>
+          <div class="portfolio-meta-row"><span class="meta-key">こだわり</span><span class="meta-val">医療・介護現場の複雑なシフトルールを自動処理。印刷レイアウトまで徹底した実用性重視の業務ツール。</span></div>
+        </div>
         <div class="portfolio-links">
           <a class="portfolio-link" href="https://shift-scheduler-azf.pages.dev/" target="_blank">デモを見る →</a>
         </div>
         <div class="stack-row">
-          <span class="stack">HTML</span>
-          <span class="stack">CSS</span>
-          <span class="stack">JavaScript</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="portfolio-card">
-      <img class="portfolio-thumb" src="images/sakura-hospital.png" alt="さくら総合病院 コーポレートサイト">
-      <div class="portfolio-body">
-        <p class="portfolio-type">コーポレートLP</p>
-        <h3 class="portfolio-title">さくら総合病院 サイト</h3>
-        <p class="portfolio-desc">診療科・医師紹介・アクセスを備えた病院向けコーポレートサイト。予約導線・診療時間ページを含むフルページ構成。</p>
-        <div class="portfolio-links">
-          <a class="portfolio-link" href="https://gilvanianbird-arch.github.io/my-second-web-app/" target="_blank">デモを見る →</a>
-        </div>
-        <div class="stack-row">
-          <span class="stack">HTML</span>
-          <span class="stack">CSS</span>
-          <span class="stack">JavaScript</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="portfolio-card">
-      <img class="portfolio-thumb" src="images/lp-lumiere.png" alt="LUMIÈRE ファンデーションLP">
-      <div class="portfolio-body">
-        <p class="portfolio-type">商品LP</p>
-        <h3 class="portfolio-title">LUMIÈRE — 商品LP</h3>
-        <p class="portfolio-desc">高級コスメブランドをイメージした商品LP。ダークトーンの洗練されたデザインと、スクロールアニメーションを実装。</p>
-        <div class="portfolio-links">
-          <a class="portfolio-link" href="https://gilvanianbird-arch.github.io/portfolio-lp/" target="_blank">デモを見る →</a>
-        </div>
-        <div class="stack-row">
-          <span class="stack">HTML</span>
-          <span class="stack">CSS</span>
-          <span class="stack">JavaScript</span>
+          <span class="stack">HTML</span><span class="stack">CSS</span><span class="stack">JavaScript</span>
         </div>
       </div>
     </div>
@@ -618,14 +703,16 @@
         <p class="portfolio-type">AIアプリ</p>
         <h3 class="portfolio-title">AI社内システム</h3>
         <p class="portfolio-desc">ブラウザ上で動作する4部署対応のAIチャットシステム。部門別に自動振り分けするリーダーエージェントを搭載。</p>
+        <div class="portfolio-meta">
+          <div class="portfolio-meta-row"><span class="meta-key">制作期間</span><span class="meta-val">約1週間</span></div>
+          <div class="portfolio-meta-row"><span class="meta-key">使用技術</span><span class="meta-val">HTML / CSS / JavaScript / Claude API</span></div>
+          <div class="portfolio-meta-row"><span class="meta-key">こだわり</span><span class="meta-val">4部署のAIを1画面から呼び出せるUIを設計。リーダーエージェントの自動振り分けでユーザーが操作を意識しない体験を実現。</span></div>
+        </div>
         <div class="portfolio-links">
           <a class="portfolio-link" href="https://claude.ai/public/artifacts/bf7926b5-8731-4b7d-a0f7-bbbeaa1735f7" target="_blank">デモを見る →</a>
         </div>
         <div class="stack-row">
-          <span class="stack">HTML</span>
-          <span class="stack">CSS</span>
-          <span class="stack">JavaScript</span>
-          <span class="stack">Claude API</span>
+          <span class="stack">HTML</span><span class="stack">CSS</span><span class="stack">JavaScript</span><span class="stack">Claude API</span>
         </div>
       </div>
     </div>
@@ -637,18 +724,46 @@
 
 <!-- ── CONTACT ── -->
 <section id="contact">
-  <div class="contact-block">
-    <h2>医療系副業案件、受付中</h2>
-    <p>医療・介護・ヘルスケア領域のWebシステム開発にご興味のある方は<br>お気軽にお問い合わせください。</p>
-    <div class="contact-links">
-      <a class="contact-btn primary" href="https://crowdworks.jp/public/employees/6603392?ref=share_url_wkprofile" target="_blank">Crowdworks でのご依頼</a>
-      <a class="contact-btn" href="https://x.com/YasunoteWorks/" target="_blank">X (Twitter)</a>
-      <a class="contact-btn" href="https://note.com/yasunote_works">note</a>
+  <p class="section-label">Contact</p>
+  <div class="contact-form-wrap">
+    <div class="contact-form-info">
+      <h2>お問い合わせ</h2>
+      <p>LP制作・LPコーディング・Webアプリ開発など、お気軽にご相談ください。通常2営業日以内にご返信いたします。</p>
+      <div class="contact-cta-links">
+        <a class="contact-btn primary" href="https://crowdworks.jp/public/employees/6603392?ref=share_url_wkprofile" target="_blank">Crowdworks でのご依頼</a>
+        <a class="contact-btn" href="https://x.com/YasunoteWorks/" target="_blank">X (Twitter)</a>
+        <a class="contact-btn" href="https://note.com/yasunote_works" target="_blank">note</a>
+      </div>
+    </div>
+    <div class="contact-form-box">
+      <input id="cf-name" type="text" placeholder="お名前" required>
+      <input id="cf-email" type="email" placeholder="メールアドレス" required>
+      <input id="cf-subject" type="text" placeholder="件名（例：LP制作のご依頼）">
+      <textarea id="cf-message" placeholder="お問い合わせ内容をご記入ください" required></textarea>
+      <button id="cf-submit" type="button">送信する →</button>
     </div>
   </div>
 </section>
 
 <footer>© 2025 Yasunote Works — All Rights Reserved</footer>
+
+<script>
+  document.getElementById('cf-submit').addEventListener('click', function() {
+    const name    = document.getElementById('cf-name').value.trim();
+    const email   = document.getElementById('cf-email').value.trim();
+    const subject = document.getElementById('cf-subject').value.trim() || 'ポートフォリオサイトからのお問い合わせ';
+    const message = document.getElementById('cf-message').value.trim();
+    if (!name || !email || !message) {
+      alert('お名前・メールアドレス・お問い合わせ内容は必須です。');
+      return;
+    }
+    const body = `お名前: ${name}\nメールアドレス: ${email}\n\n${message}`;
+    window.location.href =
+      'mailto:gilvanianbird@gmail.com'
+      + '?subject=' + encodeURIComponent(subject)
+      + '&body='    + encodeURIComponent(body);
+  });
+</script>
 
 </body>
 </html>
