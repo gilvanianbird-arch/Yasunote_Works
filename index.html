@@ -258,6 +258,57 @@
   .strength h4{font-size:15px;font-weight:500;margin-bottom:6px;}
   .strength p{font-size:14px;color:var(--muted);line-height:1.8;}
 
+  /* ── CASE STUDY ── */
+  .case-card{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:36px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:36px;align-items:center;
+  }
+  .case-tag{
+    font-family:'DM Mono',monospace;
+    font-size:11px;letter-spacing:.12em;
+    color:var(--teal);text-transform:uppercase;
+    margin-bottom:10px;
+  }
+  .case-title{
+    font-family:'Noto Serif JP',serif;
+    font-size:21px;font-weight:600;
+    margin-bottom:14px;line-height:1.5;
+  }
+  .case-body{
+    font-size:15px;color:var(--muted);
+    line-height:1.9;max-width:560px;
+  }
+  .case-note{
+    font-size:12px;color:var(--subtle);
+    margin-top:14px;line-height:1.8;
+  }
+  .case-result{
+    text-align:center;
+    background:var(--teal-light);
+    border:1px solid #9FE1CB;
+    border-radius:10px;
+    padding:28px 32px;
+    min-width:190px;
+  }
+  .case-before{
+    font-size:15px;color:var(--muted);
+    text-decoration:line-through;
+    margin-bottom:4px;
+  }
+  .case-arrow{color:var(--teal);font-size:16px;margin-bottom:4px;}
+  .case-after{
+    font-family:'DM Mono',monospace;
+    font-size:34px;color:var(--teal);
+    line-height:1.2;margin-bottom:8px;
+  }
+  .case-after small{font-size:16px;}
+  .case-result-label{font-size:12px;color:var(--muted);}
+
   /* ── PORTFOLIO ── */
   .portfolio-grid{
     display:grid;
@@ -438,6 +489,7 @@
     .hero-right{order:-1;}
     section{padding:48px 20px;}
     .about-grid,.strength-list,.portfolio-grid{grid-template-columns:1fr;}
+    .case-card{grid-template-columns:1fr;padding:24px;}
     .about-card.full{grid-column:auto;}
     .stats-inner{gap:24px;}
     .stats-divider{display:none;}
@@ -455,6 +507,7 @@
   <div class="nav-links">
     <a href="#about">About</a>
     <a href="#services">Services</a>
+    <a href="#cases">Case</a>
     <a href="#portfolio">Portfolio</a>
     <a href="#contact">Contact</a>
   </div>
@@ -606,6 +659,34 @@
 
 <div class="divider"></div>
 
+<!-- ── CASE STUDY ── -->
+<section id="cases">
+  <p class="section-label">Case Study</p>
+  <div class="case-card">
+    <div>
+      <p class="case-tag">導入事例 01 — 病院リハビリ部門</p>
+      <h3 class="case-title">勤務表作成を、毎月3時間から30分に短縮</h3>
+      <p class="case-body">
+        回復期リハビリ病棟を持つ病院のリハビリ部門では、毎月約3時間かけて勤務表を手作業で作成していました。
+        スタッフの休み希望と必要人数のルールを突き合わせる調整は、ミスも起きやすい業務でした。
+        休み希望と人員配置ルールを登録すると自動でシフト案を生成するWebアプリを開発・導入した結果、作成時間は毎月30分に。
+        空いた時間を患者対応やスタッフ指導に充てられるようになりました。
+      </p>
+      <p class="case-note">
+        ※守秘のため施設名は非公開です。ほかにも書類テンプレート化による作成時間の短縮、在宅復帰スコアの開発など、現場での業務改善を継続中です。
+      </p>
+    </div>
+    <div class="case-result">
+      <div class="case-before">毎月 3時間</div>
+      <div class="case-arrow">↓</div>
+      <div class="case-after">30<small>分</small></div>
+      <div class="case-result-label">勤務表の作成時間</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
 <!-- ── PORTFOLIO ── -->
 <section id="portfolio">
   <p class="section-label">Portfolio</p>
@@ -640,7 +721,7 @@
       <div class="portfolio-body">
         <p class="portfolio-type">業務ツール</p>
         <h3 class="portfolio-title">勤務表管理システム</h3>
-        <p class="portfolio-desc">スタッフの休み希望・必要人数ルールをもとに自動でシフトを生成。手動修正・印刷にも対応した医療・介護施設向けツール。</p>
+        <p class="portfolio-desc">スタッフの休み希望・必要人数ルールをもとに自動でシフトを生成。手動修正・印刷にも対応した医療・介護施設向けツール。<strong>病院リハビリ部門で実運用中（作成時間 毎月3時間→30分）。</strong></p>
         <div class="portfolio-meta">
           <div class="portfolio-meta-row"><span class="meta-key">制作期間</span><span class="meta-val">約1ヶ月</span></div>
           <div class="portfolio-meta-row"><span class="meta-key">使用技術</span><span class="meta-val">HTML / CSS / JavaScript</span></div>
