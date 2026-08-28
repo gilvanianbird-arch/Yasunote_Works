@@ -5,522 +5,572 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Yasunote Works｜医療・介護の業務改善 × AI × Web</title>
 <meta name="description" content="現役理学療法士が、医療・介護現場の業務改善をAIとWeb技術で支援します。業務効率化ツール開発・AI活用支援・Webサイト制作。">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600&family=Noto+Sans+JP:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=Noto+Sans+JP:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
   :root{
     --ink:#1a1a1a;
     --muted:#5a5a5a;
     --subtle:#909090;
-    --line:#d8d8d8;
+    --line:#e4e2db;
+    --line-2:#cfccc4;
     --teal:#0F6E56;
     --teal-light:#E1F5EE;
     --teal-mid:#1D9E75;
     --bg:#f8f7f4;
     --white:#ffffff;
+
+    --wrap:1180px;
+    --wrap-wide:1180px;
+    --pad:clamp(20px,4vw,56px);
+    --text:44rem;
+    --card-line:#eae7df;
+    --r:6px;
+    --mono:'DM Mono',ui-monospace,monospace;
+    --serif:'Noto Serif JP',serif;
   }
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
   body{
     font-family:'Noto Sans JP',sans-serif;
     background:var(--bg);
     color:var(--ink);
-    font-size:16px;
-    line-height:1.85;
+    font-size:17px;
+    line-height:1.9;
+    font-weight:400;
+    -webkit-font-smoothing:antialiased;
   }
+  img{max-width:100%;display:block}
+  a{color:inherit}
+
+  /* ── LAYOUT ── */
+  .wrap{width:100%;max-width:var(--wrap);margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
+  .wrap.wide{max-width:var(--wrap-wide)}
+  .band{padding-block:clamp(64px,7.5vw,112px)}
+  .band--white{background:var(--white)}
+  .band--teal{background:var(--teal);color:#fff}
+  .band--tight{padding-block:clamp(52px,5.5vw,88px)}
+  .band--flush{padding-top:0}
+  .measure{max-width:var(--text)}
+  section{scroll-margin-top:88px}
 
   /* ── NAV ── */
   nav{
     position:sticky;top:0;z-index:100;
-    background:rgba(248,247,244,0.92);
-    backdrop-filter:blur(8px);
+    background:rgba(248,247,244,.86);
+    backdrop-filter:blur(14px) saturate(1.3);
+    -webkit-backdrop-filter:blur(14px) saturate(1.3);
     border-bottom:1px solid var(--line);
-    padding:14px 40px;
+  }
+  .nav-inner{
     display:flex;align-items:center;justify-content:space-between;
+    padding-top:16px;padding-bottom:16px;gap:24px;
   }
-  .nav-logo{
-    display:flex;align-items:center;gap:8px;
-    text-decoration:none;
-  }
-  .nav-logo img{height:28px;width:28px;object-fit:contain;}
+  .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex:0 0 auto}
+  .nav-logo img{height:26px;width:26px;flex:0 0 auto;object-fit:contain}
   .nav-logo-text{
-    font-family:'DM Mono',monospace;
-    font-size:13px;letter-spacing:.05em;
-    color:var(--ink);font-weight:400;
+    font-family:var(--mono);font-size:14px;
+    letter-spacing:.08em;font-weight:500;
   }
-  .nav-links{display:flex;gap:28px;}
+  .nav-links{display:flex;gap:clamp(18px,2.4vw,36px)}
   .nav-links a{
-    font-size:14px;color:var(--muted);
-    text-decoration:none;letter-spacing:.05em;
+    font-family:var(--mono);
+    font-size:13px;color:var(--muted);
+    text-decoration:none;letter-spacing:.06em;
     transition:color .2s;
   }
-  .nav-links a:hover{color:var(--ink);}
+  .nav-links a:hover{color:var(--teal)}
 
   /* ── HERO ── */
   .hero{
-    max-width:960px;margin:0 auto;
-    padding:80px 40px 60px;
+    padding-top:clamp(40px,5vw,76px);
+    padding-bottom:clamp(44px,5.5vw,80px);
     display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:48px;
+    grid-template-columns:minmax(0,1fr) minmax(0,1.02fr);
+    column-gap:clamp(36px,4.4vw,72px);
+    row-gap:clamp(28px,3.2vw,44px);
     align-items:center;
   }
-  .hero-left{}
-  .hero-eyebrow{
-    display:flex;align-items:center;gap:10px;
-    margin-bottom:20px;
-  }
-  .hero-eyebrow img{height:32px;width:32px;object-fit:contain;}
+  .hero-head{grid-column:1/-1}
+  .hero-left{align-self:center}
+  .hero-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:clamp(20px,2.2vw,28px)}
+  .hero-eyebrow img{height:34px;width:34px;object-fit:contain}
   .hero-eyebrow-text{
-    font-family:'DM Mono',monospace;
-    font-size:13px;letter-spacing:.1em;
-    color:var(--muted);
+    font-family:var(--mono);font-weight:500;
+    font-size:14px;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--ink);
   }
   .hero-name{
-    font-family:'Noto Serif JP',serif;
-    font-size:clamp(28px,4vw,44px);
+    font-family:var(--serif);
+    font-size:clamp(1.95rem,4.5vw,3.5rem);
     font-weight:600;
-    line-height:1.3;
-    margin-bottom:20px;
-    letter-spacing:-.01em;
+    line-height:1.36;
+    letter-spacing:-.025em;
+    margin-bottom:0;
   }
-  .hero-name span{color:var(--teal);}
+  .hero-name span{color:var(--teal)}
   .hero-lead{
-    font-size:16px;color:var(--muted);
-    line-height:1.9;
-    margin-bottom:28px;
+    font-size:clamp(15.5px,1.05vw,17px);
+    color:var(--muted);
+    line-height:2;
+    max-width:31rem;
   }
-  .tag-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px;}
-  .tag{
-    font-family:'DM Mono',monospace;
-    font-size:11px;letter-spacing:.08em;
-    background:var(--white);
-    border:1px solid var(--line);
-    border-radius:4px;
-    padding:4px 10px;color:var(--muted);
+  .tag-row{
+    display:flex;flex-wrap:wrap;gap:6px 0;
+    font-family:var(--mono);font-size:12.5px;
+    letter-spacing:.03em;color:var(--subtle);
+    margin:clamp(20px,2.2vw,28px) 0 clamp(24px,2.8vw,34px);
   }
-  .tag.hi{
-    background:var(--teal-light);
-    border-color:#9FE1CB;
-    color:var(--teal);
-  }
+  .tag.hi{color:var(--teal)}
+  .tag:not(:last-child)::after{content:"/";color:var(--line-2);margin:0 .15em 0 .85em}
   .hero-badge{
-    display:inline-flex;align-items:center;gap:8px;
+    display:inline-flex;align-items:center;gap:10px;
     background:var(--teal);color:#fff;
-    font-size:13px;padding:10px 22px;
-    border-radius:6px;text-decoration:none;
-    letter-spacing:.03em;
-    transition:background .2s;
+    font-size:15px;padding:15px 30px;border-radius:4px;
+    text-decoration:none;letter-spacing:.04em;
+    transition:background .2s,transform .2s;
   }
-  .hero-badge:hover{background:var(--teal-mid);}
+  .hero-badge:hover{background:var(--teal-mid);translate:0 -1px}
 
-  /* ── HERO RIGHT: モックアップ ── */
-  .hero-right{
-    position:relative;
+  /* ── HERO VISUAL ── */
+  .hero-visual{position:relative}
+  .hero-visual::before{
+    content:"";position:absolute;z-index:0;
+    left:9%;right:-3.5%;bottom:-7%;height:74%;
+    background:var(--teal-light);
   }
   .mockup-browser{
-    background:#e8e8e8;
-    border-radius:12px;
-    overflow:hidden;
-    box-shadow:0 8px 32px rgba(0,0,0,0.12);
-    border:1px solid #ccc;
+    position:relative;z-index:1;
+    background:#eeece7;border-radius:8px;overflow:hidden;
+    box-shadow:0 40px 70px -34px rgba(15,110,86,.38),0 3px 10px rgba(26,26,26,.05);
   }
-  .mockup-bar{
-    background:#d4d4d4;
-    padding:8px 12px;
-    display:flex;align-items:center;gap:6px;
-  }
-  .mockup-dot{
-    width:10px;height:10px;border-radius:50%;
-  }
-  .mockup-dot.red{background:#ff5f57;}
-  .mockup-dot.yellow{background:#febc2e;}
-  .mockup-dot.green{background:#28c840;}
+  .mockup-bar{background:#e2e0da;padding:10px 14px;display:flex;align-items:center;gap:6px}
+  .mockup-dot{width:9px;height:9px;border-radius:50%}
+  .mockup-dot.red{background:#e88b84}
+  .mockup-dot.yellow{background:#e5c073}
+  .mockup-dot.green{background:#84c194}
   .mockup-url{
-    margin-left:8px;
-    background:#fff;
-    border-radius:4px;
-    padding:2px 10px;
-    font-size:10px;
-    font-family:'DM Mono',monospace;
-    color:#888;
-    flex:1;
+    margin-left:10px;background:#fff;border-radius:3px;
+    padding:3px 12px;font-size:11px;font-family:var(--mono);
+    color:#9a9a9a;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
   }
-  .mockup-img{
-    width:100%;
-    display:block;
-    aspect-ratio:16/9;
-    object-fit:cover;
-    object-position:top;
-  }
+  .mockup-img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top}
 
   /* ── STATS ── */
-  .stats-bar{
-    background:var(--white);
-    border-top:1px solid var(--line);
-    border-bottom:1px solid var(--line);
-  }
-  .stats-inner{
-    max-width:960px;margin:0 auto;
-    padding:28px 40px;
-    display:flex;gap:40px;flex-wrap:wrap;
-    align-items:center;
-    justify-content:flex-start;
-  }
-  .stat-item{
-    display:flex;align-items:baseline;gap:6px;
+  .stats{
+    display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:clamp(24px,4vw,64px);
+    border-top:1px solid var(--line-2);
+    padding-top:clamp(28px,3vw,40px);
+    padding-bottom:clamp(56px,6vw,88px);
   }
   .stat-num{
-    font-family:'DM Mono',monospace;
-    font-size:28px;
-    font-weight:400;
-    color:var(--teal);
+    font-family:var(--mono);
+    font-size:clamp(34px,3.6vw,50px);
+    line-height:1;color:var(--teal);letter-spacing:-.02em;
   }
-  .stat-unit{
-    font-size:14px;color:var(--muted);
-  }
-  .stat-label{
-    font-size:13px;color:var(--subtle);
-    margin-left:2px;
-  }
-  .stats-divider{
-    width:1px;height:32px;
-    background:var(--line);
-  }
+  .stat-unit{font-size:clamp(14px,1vw,17px);color:var(--teal);margin-left:4px}
+  .stat-label{display:block;margin-top:12px;font-size:13.5px;color:var(--muted);line-height:1.7}
 
-  /* ── DIVIDER ── */
-  .divider{
-    max-width:960px;margin:0 auto;
-    padding:0 40px;
-    border-top:1px solid var(--line);
+  /* ── SECTION HEADINGS ── */
+  .sec-head{
+    display:flex;align-items:baseline;gap:16px;
+    margin-bottom:clamp(28px,3.4vw,48px);
   }
-
-  /* ── SECTION ── */
-  section{max-width:960px;margin:0 auto;padding:60px 40px;}
+  .sec-index{font-family:var(--mono);font-size:13px;color:var(--teal);letter-spacing:.1em}
   .section-label{
-    font-family:'DM Mono',monospace;
-    font-size:12px;letter-spacing:.18em;
-    text-transform:uppercase;color:var(--subtle);
-    margin-bottom:32px;
+    font-family:var(--mono);font-weight:500;
+    font-size:clamp(17px,1.9vw,23px);
+    letter-spacing:.1em;text-transform:uppercase;
+    line-height:1.2;
   }
+  .band--teal .section-label{color:#fff}
+  .band--teal .sec-index{color:var(--teal-light)}
+
+  /* 見出しを左に置く2カラム構成 */
+  .split{
+    display:grid;
+    grid-template-columns:minmax(0,240px) minmax(0,1fr);
+    gap:clamp(32px,5vw,88px);
+  }
+  .split-head{position:sticky;top:104px;align-self:start}
+  .split-head .sec-head{margin-bottom:0;flex-direction:column;gap:10px;align-items:flex-start}
 
   /* ── ABOUT ── */
   .about-intro{
-    font-size:16px;color:var(--muted);
-    line-height:1.9;margin-bottom:24px;
-    max-width:640px;
+    font-size:clamp(16.5px,1.1vw,18px);
+    line-height:2.05;color:var(--ink);
+    max-width:42rem;
+    margin-bottom:clamp(32px,3.6vw,52px);
   }
-  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .about-grid{
+    display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:clamp(18px,2vw,26px);
+  }
   .about-card{
     background:var(--white);
-    border:1px solid var(--line);
-    border-radius:10px;
-    padding:24px;
+    border:1px solid var(--card-line);
+    border-radius:var(--r);
+    padding:clamp(24px,2.3vw,32px);
   }
   .about-card h3{
-    font-family:'Noto Serif JP',serif;
-    font-size:16px;font-weight:600;
-    margin-bottom:10px;
+    font-family:var(--serif);
+    font-size:clamp(17px,1.5vw,20px);
+    font-weight:600;line-height:1.6;
+    margin-bottom:12px;
   }
-  .about-card p{font-size:15px;color:var(--muted);line-height:1.85;}
-  .about-card.full{grid-column:1/-1;}
+  .about-card p{font-size:15.5px;color:var(--muted);line-height:1.95}
 
   /* ── SERVICES ── */
+  .stacked-block{border-top:1px solid var(--line);padding-top:clamp(56px,6.5vw,100px)}
   .service-item{
-    padding:28px 0;
-    border-top:1px solid var(--line);
+    display:grid;
+    grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);
+    gap:clamp(16px,4vw,64px);
+    padding:clamp(28px,3vw,42px) 0;
+    border-bottom:1px solid var(--line);
   }
-  .service-item:last-child{border-bottom:1px solid var(--line);}
-  .service-head{
-    display:flex;align-items:baseline;
-    justify-content:space-between;
-    margin-bottom:10px;gap:16px;
-  }
+  .service-item:first-of-type{border-top:1px solid var(--line)}
+  .service-head{display:flex;flex-direction:column;gap:12px}
+  .service-num{font-family:var(--mono);font-size:12px;color:var(--teal);letter-spacing:.12em}
   .service-head h3{
-    font-family:'Noto Serif JP',serif;
-    font-size:19px;font-weight:600;
+    font-family:var(--serif);
+    font-size:clamp(19px,1.85vw,24px);
+    font-weight:600;line-height:1.5;letter-spacing:-.01em;
   }
   .service-badge{
-    font-family:'DM Mono',monospace;
-    font-size:11px;letter-spacing:.1em;
-    background:var(--teal-light);color:var(--teal);
-    border:1px solid #9FE1CB;
-    border-radius:4px;padding:3px 10px;white-space:nowrap;
+    font-family:var(--mono);font-size:11px;
+    letter-spacing:.18em;color:var(--teal);
   }
-  .service-desc{font-size:15px;color:var(--muted);max-width:560px;}
+  .service-badge.sub{color:var(--subtle)}
+  .service-desc{font-size:16px;color:var(--muted);line-height:1.95;max-width:38rem}
 
   /* ── STRENGTHS ── */
-  .strength-list{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-  .strength{
-    background:var(--white);
-    border:1px solid var(--line);
-    border-radius:10px;padding:20px;
-    border-left:3px solid var(--teal-mid);
+  .strength-list{
+    display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:clamp(16px,1.8vw,24px);
   }
-  .strength h4{font-size:15px;font-weight:500;margin-bottom:6px;}
-  .strength p{font-size:14px;color:var(--muted);line-height:1.8;}
+  .strength{
+    background:var(--bg);
+    border-radius:var(--r);
+    padding:clamp(22px,2.2vw,30px);
+  }
+  .strength .num{
+    font-family:var(--mono);font-size:12px;
+    color:var(--teal);letter-spacing:.12em;display:block;margin-bottom:12px;
+  }
+  .strength h4{
+    font-family:var(--serif);
+    font-size:clamp(16.5px,1.4vw,19px);
+    font-weight:600;line-height:1.6;margin-bottom:10px;
+  }
+  .strength p{font-size:15px;color:var(--muted);line-height:1.9}
 
   /* ── CASE STUDY ── */
-  .case-card{
-    background:var(--white);
-    border:1px solid var(--line);
-    border-radius:12px;
-    padding:36px;
+  .case{
     display:grid;
-    grid-template-columns:1fr auto;
-    gap:36px;align-items:center;
+    grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);
+    gap:clamp(32px,4vw,64px);
+    align-items:center;
   }
   .case-tag{
-    font-family:'DM Mono',monospace;
-    font-size:11px;letter-spacing:.12em;
-    color:var(--teal);text-transform:uppercase;
-    margin-bottom:10px;
+    font-family:var(--mono);font-size:12px;
+    letter-spacing:.14em;color:var(--teal-light);
+    text-transform:uppercase;margin-bottom:18px;
   }
   .case-title{
-    font-family:'Noto Serif JP',serif;
-    font-size:21px;font-weight:600;
-    margin-bottom:14px;line-height:1.5;
+    font-family:var(--serif);
+    font-size:clamp(22px,2.5vw,32px);
+    font-weight:600;line-height:1.55;letter-spacing:-.015em;
+    margin-bottom:20px;color:#fff;
   }
   .case-body{
-    font-size:15px;color:var(--muted);
-    line-height:1.9;max-width:560px;
+    font-size:15.5px;line-height:2;
+    color:rgba(255,255,255,.82);max-width:38rem;
   }
   .case-note{
-    font-size:12px;color:var(--subtle);
-    margin-top:14px;line-height:1.8;
+    font-size:13px;color:rgba(255,255,255,.55);
+    margin-top:22px;line-height:1.9;max-width:38rem;
   }
   .case-result{
     text-align:center;
-    background:var(--teal-light);
-    border:1px solid #9FE1CB;
-    border-radius:10px;
-    padding:28px 32px;
-    min-width:190px;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(225,245,238,.28);
+    border-radius:8px;
+    padding:clamp(26px,2.6vw,36px) clamp(20px,2vw,32px);
   }
   .case-before{
-    font-size:15px;color:var(--muted);
-    text-decoration:line-through;
-    margin-bottom:4px;
+    font-size:15px;color:rgba(255,255,255,.6);
+    text-decoration:line-through;margin-bottom:4px;
   }
-  .case-arrow{color:var(--teal);font-size:16px;margin-bottom:4px;}
+  .case-arrow{color:var(--teal-light);font-size:14px;margin-bottom:4px}
   .case-after{
-    font-family:'DM Mono',monospace;
-    font-size:34px;color:var(--teal);
-    line-height:1.2;margin-bottom:8px;
+    font-family:var(--mono);
+    font-size:clamp(46px,5.2vw,72px);
+    color:#fff;line-height:1;letter-spacing:-.03em;margin-bottom:14px;
   }
-  .case-after small{font-size:16px;}
-  .case-result-label{font-size:12px;color:var(--muted);}
+  .case-after small{font-size:.38em;letter-spacing:0;margin-left:2px}
+  .case-result-label{
+    font-size:12.5px;color:var(--teal-light);
+    letter-spacing:.06em;
+    border-top:1px solid rgba(225,245,238,.28);padding-top:14px;
+  }
 
   /* ── PORTFOLIO ── */
-  .portfolio-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:20px;
+  .pf-grid{
+    display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:clamp(22px,2.4vw,30px);
   }
-  .portfolio-card{
+  .pf-sub{
+    grid-column:1/-1;
+    font-family:var(--mono);font-size:12px;
+    letter-spacing:.18em;text-transform:uppercase;color:var(--subtle);
+    padding-bottom:14px;border-bottom:1px solid var(--line-2);
+    margin-top:clamp(20px,2.4vw,32px);
+  }
+  .pf-sub:first-child{margin-top:0}
+  .pf-item{
+    display:flex;flex-direction:column;
     background:var(--white);
-    border:1px solid var(--line);
-    border-radius:12px;
-    overflow:hidden;
-    transition:box-shadow .2s, transform .2s;
+    border:1px solid var(--card-line);
+    border-radius:8px;overflow:hidden;
+    transition:border-color .3s ease-out,translate .35s cubic-bezier(.22,.61,.36,1);
   }
-  .portfolio-card:hover{
-    box-shadow:0 6px 24px rgba(0,0,0,0.10);
-    transform:translateY(-2px);
+  .pf-media{overflow:hidden;background:#f0eee9;border-bottom:1px solid var(--card-line)}
+  .pf-thumb{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;transition:transform .6s cubic-bezier(.2,.7,.3,1)}
+  .pf-body{
+    padding:clamp(22px,2.1vw,30px);
+    display:flex;flex-direction:column;flex:1;
   }
-  .portfolio-thumb{
-    width:100%;
-    aspect-ratio:16/10;
-    object-fit:cover;
-    object-position:top;
-    display:block;
-    border-bottom:1px solid var(--line);
-    background:#e8e8e8;
+  .pf-type{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;color:var(--teal);text-transform:uppercase;margin-bottom:10px}
+  .pf-title{
+    font-family:var(--serif);
+    font-size:clamp(18px,1.6vw,21px);
+    font-weight:600;line-height:1.55;letter-spacing:-.01em;
+    margin-bottom:12px;
   }
-  .portfolio-body{padding:20px;}
-  .portfolio-type{
-    font-family:'DM Mono',monospace;
-    font-size:11px;letter-spacing:.12em;
-    color:var(--teal);
-    text-transform:uppercase;
-    margin-bottom:6px;
+  .pf-desc{font-size:15px;color:var(--muted);line-height:1.9;margin-bottom:18px}
+  .pf-desc strong{color:var(--ink);font-weight:500}
+  .pf-meta{
+    display:flex;flex-direction:column;gap:7px;
+    margin-bottom:18px;padding-top:16px;
+    border-top:1px solid var(--card-line);
   }
-  .portfolio-title{
-    font-family:'Noto Serif JP',serif;
-    font-size:16px;font-weight:600;
-    margin-bottom:8px;
-    line-height:1.4;
+  .pf-meta-row{display:grid;grid-template-columns:72px minmax(0,1fr);gap:12px;font-size:13px;line-height:1.75}
+  .meta-key{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--teal);padding-top:3px}
+  .meta-val{color:var(--muted)}
+  .meta-val code{font-family:var(--mono);font-size:.94em;color:var(--ink)}
+  .pf-links{display:flex;gap:20px;flex-wrap:wrap;margin-top:auto;padding-top:4px;margin-bottom:14px}
+  .pf-link{
+    font-family:var(--mono);font-size:12.5px;color:var(--teal);
+    text-decoration:none;letter-spacing:.04em;
+    border-bottom:1px solid rgba(15,110,86,.3);padding-bottom:2px;
+    transition:border-color .2s;
   }
-  .portfolio-desc{
-    font-size:14px;color:var(--muted);
-    line-height:1.7;
-    margin-bottom:14px;
+  .pf-link:hover{border-color:var(--teal)}
+  .stack-row{display:flex;flex-wrap:wrap;font-family:var(--mono);font-size:11px;color:var(--subtle);line-height:1.9}
+  .stack:not(:last-child)::after{content:"/";color:var(--line-2);margin:0 .1em 0 .6em}
+
+  /* 1件目だけ横位置の大きいカードにする */
+  .pf-item.feature{
+    grid-column:1/-1;
+    display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,1fr);
+    align-items:stretch;
   }
-  .portfolio-links{
-    display:flex;gap:14px;
-    margin-bottom:14px;
-    flex-wrap:wrap;
+  .pf-item.feature .pf-media{
+    border-bottom:none;border-right:1px solid var(--card-line);
+    height:100%;
   }
-  .portfolio-link{
-    font-family:'DM Mono',monospace;
-    font-size:12px;color:var(--teal);
-    text-decoration:none;letter-spacing:.06em;
-    white-space:nowrap;
-  }
-  .portfolio-link:hover{text-decoration:underline;}
-  .stack-row{display:flex;flex-wrap:wrap;gap:6px;}
-  .stack{
-    font-family:'DM Mono',monospace;
-    font-size:11px;
-    background:var(--bg);
-    border:1px solid var(--line);
-    border-radius:4px;
-    padding:2px 8px;color:var(--muted);
-  }
+  .pf-item.feature .pf-thumb{height:100%;aspect-ratio:auto;min-height:280px}
+  .pf-item.feature .pf-body{justify-content:center;padding:clamp(26px,2.6vw,40px)}
+  .pf-item.feature .pf-title{font-size:clamp(20px,1.9vw,25px)}
+  .pf-item.feature .pf-desc{font-size:15.5px}
+  .pf-item.feature .pf-links{margin-top:24px}
 
   /* ── CONTACT ── */
-  .contact-block{
-    background:var(--white);
-    border:1px solid var(--line);
-    border-radius:12px;
-    padding:48px 40px;
-    text-align:center;
-  }
-  .contact-block h2{
-    font-family:'Noto Serif JP',serif;
-    font-size:24px;font-weight:600;
-    margin-bottom:12px;
-  }
-  .contact-block p{font-size:15px;color:var(--muted);margin-bottom:28px;line-height:1.9;}
-  .contact-links{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;}
-  .contact-btn{
-    font-size:14px;
-    border:1px solid var(--line);
-    border-radius:6px;
-    padding:10px 24px;
-    text-decoration:none;color:var(--ink);
-    transition:border-color .2s,color .2s;
-  }
-  .contact-btn:hover{border-color:var(--teal);color:var(--teal);}
-  .contact-btn.primary{
-    background:var(--teal);
-    border-color:var(--teal);
-    color:#fff;
-  }
-  .contact-btn.primary:hover{background:var(--teal-mid);border-color:var(--teal-mid);}
-
-  /* ── PORTFOLIO SUB LABEL ── */
-  .portfolio-sub{
-    grid-column:1/-1;
-    font-family:'DM Mono',monospace;
-    font-size:11px;letter-spacing:.16em;
-    text-transform:uppercase;color:var(--subtle);
-    padding-bottom:12px;
-    border-bottom:1px solid var(--line);
-    margin-top:16px;
-  }
-  .portfolio-sub:first-child{margin-top:0;}
-
-  /* ── PORTFOLIO META ── */
-  .portfolio-meta{margin-bottom:12px;display:flex;flex-direction:column;gap:5px;}
-  .portfolio-meta-row{display:flex;gap:8px;font-size:13px;line-height:1.6;}
-  .meta-key{
-    font-family:'DM Mono',monospace;font-size:11px;
-    letter-spacing:.06em;color:var(--teal);
-    min-width:72px;flex-shrink:0;padding-top:2px;
-  }
-  .meta-val{color:var(--muted);font-size:13px;}
-
-  /* ── CONTACT FORM ── */
   .contact-form-wrap{
-    display:grid;grid-template-columns:1fr 1fr;
-    gap:48px;align-items:start;
+    display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+    gap:clamp(40px,5vw,88px);align-items:start;
   }
   .contact-form-info h2{
-    font-family:'Noto Serif JP',serif;
-    font-size:22px;font-weight:600;
-    margin-bottom:12px;
+    font-family:var(--serif);
+    font-size:clamp(22px,2.2vw,30px);
+    font-weight:600;line-height:1.5;letter-spacing:-.015em;
+    margin-bottom:18px;
   }
-  .contact-form-info p{
-    font-size:15px;color:var(--muted);
-    line-height:1.9;margin-bottom:24px;
+  .contact-form-info p{font-size:16px;color:var(--muted);line-height:2.05;margin-bottom:32px;max-width:32rem}
+  .contact-cta-links{display:flex;flex-direction:column;align-items:flex-start;gap:14px}
+  .contact-btn{
+    font-size:14.5px;text-decoration:none;color:var(--muted);
+    font-family:var(--mono);letter-spacing:.04em;
+    border-bottom:1px solid var(--line-2);padding-bottom:3px;
+    transition:color .2s,border-color .2s;
   }
-  .contact-cta-links{display:flex;flex-direction:column;gap:10px;}
-  .contact-form-box{display:flex;flex-direction:column;gap:12px;}
+  .contact-btn:hover{color:var(--teal);border-color:var(--teal)}
+  .contact-btn.primary{
+    background:var(--teal);color:#fff;border:none;border-radius:4px;
+    font-family:'Noto Sans JP',sans-serif;font-size:15px;
+    padding:14px 28px;transition:background .2s;
+  }
+  .contact-btn.primary:hover{background:var(--teal-mid);color:#fff}
+  .contact-form-box{display:flex;flex-direction:column;gap:8px}
   .contact-form-box input,
   .contact-form-box textarea{
-    width:100%;padding:12px 14px;
-    font-size:14px;font-family:'Noto Sans JP',sans-serif;
-    border:1px solid var(--line);border-radius:6px;
-    background:var(--white);color:var(--ink);
+    width:100%;padding:16px 2px;
+    font-size:16px;font-family:'Noto Sans JP',sans-serif;
+    border:none;border-bottom:1px solid var(--line-2);border-radius:0;
+    background:transparent;color:var(--ink);
     outline:none;transition:border-color .2s;
   }
+  .contact-form-box input::placeholder,
+  .contact-form-box textarea::placeholder{color:var(--subtle)}
   .contact-form-box input:focus,
-  .contact-form-box textarea:focus{border-color:var(--teal);}
-  .contact-form-box textarea{resize:vertical;min-height:130px;}
+  .contact-form-box textarea:focus{border-bottom-color:var(--teal)}
+  .contact-form-box textarea{resize:vertical;min-height:140px;line-height:1.9}
   .contact-form-box button{
     background:var(--teal);color:#fff;border:none;
-    padding:12px 28px;border-radius:6px;
-    font-size:14px;font-family:'Noto Sans JP',sans-serif;
+    padding:16px 34px;border-radius:4px;
+    font-size:15px;font-family:'Noto Sans JP',sans-serif;
     cursor:pointer;transition:background .2s;
-    align-self:flex-start;letter-spacing:.03em;
+    align-self:flex-start;letter-spacing:.04em;margin-top:20px;
   }
-  .contact-form-box button:hover{background:var(--teal-mid);}
-  @media(max-width:720px){
-    .contact-form-wrap{grid-template-columns:1fr;}
-  }
+  .contact-form-box button:hover{background:var(--teal-mid)}
 
   /* ── FOOTER ── */
-  footer{
-    border-top:1px solid var(--line);
-    padding:24px 40px;
-    text-align:center;
-    font-family:'DM Mono',monospace;
-    font-size:12px;letter-spacing:.08em;
-    color:var(--subtle);
+  footer{background:var(--white);border-top:1px solid var(--line)}
+  .footer-inner{
+    padding-top:36px;padding-bottom:36px;
+    display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
+    font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--subtle);
   }
 
-  @media(max-width:720px){
-    nav{padding:12px 20px;}
-    .nav-links{gap:16px;}
-    .hero{
-      grid-template-columns:1fr;
-      padding:48px 20px 40px;
-      gap:32px;
+  /* ── MOTION ── */
+  .reveal{
+    opacity:0;transform:translateY(16px);
+    transition:opacity .7s cubic-bezier(.22,.61,.36,1),transform .7s cubic-bezier(.22,.61,.36,1);
+  }
+  .reveal.in{opacity:1;transform:none}
+  .hero-anim{
+    opacity:0;transform:translateY(14px);
+    transition:opacity .65s cubic-bezier(.22,.61,.36,1),transform .65s cubic-bezier(.22,.61,.36,1);
+    transition-delay:var(--d,0s);
+  }
+  .hero-anim.in{opacity:1;transform:none}
+  .ar{display:inline-block;transition:translate .3s cubic-bezier(.22,.61,.36,1)}
+  .cnum{display:inline-block;min-width:2ch;text-align:center}
+
+  @media (hover:hover) and (pointer:fine){
+    .about-card{transition:translate .3s ease-out,border-color .3s ease-out}
+    .about-card:hover{translate:0 -2px;border-color:#ded9cf}
+    .strength{transition:translate .3s ease-out,background-color .3s ease-out}
+    .strength:hover{translate:0 -2px;background:#f3f1e9}
+    .pf-item:hover{translate:0 -3px;border-color:#dcd8ce}
+    .pf-item:hover .pf-thumb{transform:scale(1.02)}
+    .pf-link:hover .ar,
+    .hero-badge:hover .ar,
+    .contact-btn:hover .ar,
+    .contact-form-box button:hover .ar{translate:3px 0}
+  }
+
+  @media print{
+    .reveal,.hero-anim{opacity:1!important;transform:none!important}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{
+      animation-duration:.01ms!important;
+      animation-iteration-count:1!important;
+      transition-duration:.01ms!important;
     }
-    .hero-right{order:-1;}
-    section{padding:48px 20px;}
-    .about-grid,.strength-list,.portfolio-grid{grid-template-columns:1fr;}
-    .case-card{grid-template-columns:1fr;padding:24px;}
-    .about-card.full{grid-column:auto;}
-    .stats-inner{gap:24px;}
-    .stats-divider{display:none;}
-    .contact-block{padding:32px 20px;}
+    .reveal,.hero-anim{opacity:1!important;transform:none!important}
+    .pf-item:hover .pf-thumb{transform:none}
+    .pf-item:hover,.about-card:hover,.strength:hover{translate:none}
+  }
+
+  /* ── RESPONSIVE ── */
+  @media(max-width:1000px){
+    .hero{grid-template-columns:1fr;gap:clamp(32px,5vw,48px)}
+    .hero-visual{margin-top:4px}
+    .hero-lead{max-width:none}
+    .split{grid-template-columns:1fr;gap:clamp(24px,3.5vw,36px)}
+    .split-head{position:static}
+    .split-head .sec-head{flex-direction:row;align-items:baseline;gap:14px}
+    .service-item{grid-template-columns:1fr;gap:14px}
+    .about-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .about-card:last-child{grid-column:1/-1}
+    .pf-item.feature{grid-template-columns:1fr}
+    .pf-item.feature .pf-media{border-right:none;border-bottom:1px solid var(--card-line);height:auto}
+    .pf-item.feature .pf-thumb{aspect-ratio:16/10;min-height:0}
+    .pf-item.feature .pf-links{margin-top:auto}
+    .case{grid-template-columns:1fr;gap:32px}
+    .contact-form-wrap{grid-template-columns:1fr}
+  }
+  @media(max-width:840px){
+    .pf-grid{grid-template-columns:1fr}
+    .strength-list{grid-template-columns:1fr}
+  }
+  @media(max-width:420px){
+    .nav-inner{gap:10px}
+    .nav-links{gap:10px}
+    .nav-links a{font-size:10.5px}
+  }
+  @media(max-width:720px){
+    body{font-size:16px}
+    .nav-logo-text{display:none}
+    .nav-links{gap:14px}
+    .nav-links a{font-size:11.5px;letter-spacing:.02em}
+    .nav-inner{padding-top:13px;padding-bottom:13px}
+    .hero{padding-top:40px}
+    .hero-name{line-height:1.45;letter-spacing:-.01em}
+    .hero-badge{width:100%;justify-content:center;padding:15px 24px}
+    .hero-visual::before{left:20%;right:-4%;bottom:-4%;height:56%}
+    .stats{grid-template-columns:1fr;gap:0}
+    .stats .stat-item{
+      display:flex;align-items:baseline;flex-wrap:wrap;gap:0 10px;
+      padding:16px 0;border-bottom:1px solid var(--line);
+    }
+    .stat-num{font-size:32px}
+    .stat-label{margin-top:0;font-size:13px}
+    .about-grid{grid-template-columns:1fr}
+    .case-after{font-size:52px}
+    .pf-meta-row{grid-template-columns:1fr;gap:2px}
+    .meta-key{padding-top:0}
+    .contact-btn.primary{width:100%;text-align:center}
+    .contact-form-box button{width:100%;text-align:center}
+    .footer-inner{justify-content:center;text-align:center}
   }
 </style>
 </head>
 <body>
 
 <nav>
-  <a class="nav-logo" href="#">
-    <img src="logo.png" alt="Yasunote Works logo">
-    <span class="nav-logo-text">Yasunote Works</span>
-  </a>
-  <div class="nav-links">
-    <a href="#about">About</a>
-    <a href="#services">Services</a>
-    <a href="#cases">Case</a>
-    <a href="#portfolio">Portfolio</a>
-    <a href="#contact">Contact</a>
+  <div class="wrap wide nav-inner">
+    <a class="nav-logo" href="#">
+      <img src="logo.png" alt="Yasunote Works logo">
+      <span class="nav-logo-text">Yasunote Works</span>
+    </a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#cases">Case</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#contact">Contact</a>
+    </div>
   </div>
 </nav>
 
 <!-- ── HERO ── -->
-<div class="hero">
-  <div class="hero-left">
+<div class="wrap wide hero">
+  <div class="hero-head">
     <div class="hero-eyebrow">
       <img src="logo.png" alt="Yasunote Works logo">
       <span class="hero-eyebrow-text">Yasunote Works</span>
     </div>
     <h1 class="hero-name">医療・介護現場の業務改善を、<br><span>AIとWeb</span>で支援する</h1>
+  </div>
+  <div class="hero-left">
     <p class="hero-lead">
       急性期・回復期病院で約20年。現在も主任としてリハビリ部門のマネジメントに携わる現役理学療法士が、
       「事務作業に追われ、本来患者さんのために使いたい時間が奪われている」という現場の課題を、AIとWeb技術で解決します。
@@ -533,9 +583,9 @@
       <span class="tag">理学療法士免許</span>
       <span class="tag">臨床経験 約20年</span>
     </div>
-    <a class="hero-badge" href="#contact">ご相談・ご依頼 受付中 →</a>
+    <a class="hero-badge" href="#contact">ご相談・ご依頼 受付中 <span class="ar">→</span></a>
   </div>
-  <div class="hero-right">
+  <div class="hero-visual">
     <div class="mockup-browser">
       <div class="mockup-bar">
         <span class="mockup-dot red"></span>
@@ -549,326 +599,369 @@
 </div>
 
 <!-- ── STATS ── -->
-<div class="stats-bar">
-  <div class="stats-inner">
-    <div class="stat-item">
-      <span class="stat-num">20</span>
-      <span class="stat-unit">年</span>
-      <span class="stat-label">臨床経験（現役理学療法士）</span>
-    </div>
-    <div class="stats-divider"></div>
-    <div class="stat-item">
-      <span class="stat-num">7</span>
-      <span class="stat-unit">件+</span>
-      <span class="stat-label">制作実績</span>
-    </div>
-    <div class="stats-divider"></div>
-    <div class="stat-item">
-      <span class="stat-num">3</span>
-      <span class="stat-unit">領域</span>
-      <span class="stat-label">業務改善・AI活用・Web制作</span>
-    </div>
+<div class="wrap wide stats">
+  <div class="stat-item">
+    <span class="stat-num">20</span><span class="stat-unit">年</span>
+    <span class="stat-label">臨床経験（現役理学療法士）</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">7</span><span class="stat-unit">件+</span>
+    <span class="stat-label">制作実績</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">3</span><span class="stat-unit">領域</span>
+    <span class="stat-label">業務改善・AI活用・Web制作</span>
   </div>
 </div>
 
-<div class="divider"></div>
-
 <!-- ── ABOUT ── -->
-<section id="about">
-  <p class="section-label">About</p>
-  <p class="about-intro">
-    理学療法士として約20年、急性期から回復期リハビリ病棟まで幅広く勤務し、現在は主任としてリハビリ部門のマネジメントに携わっています。
-    その一方で、独学でAI活用とWebエンジニアリングを習得。
-    単なるWeb制作ではなく、「現場を理解した上で、本当に使われる仕組みを作ること」を大切にしています。
-  </p>
-  <div class="about-grid">
-    <div class="about-card">
-      <h3>現場の専門性</h3>
-      <p>理学療法士として約20年、急性期・回復期リハビリテーション病棟など多様な現場に従事。主任としてFIM評価・退院支援・カンファレンス運営・シフト管理などの部門運営も担当。</p>
+<section id="about" class="band band--flush">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-index">01</span>
+      <p class="section-label">About</p>
     </div>
-    <div class="about-card">
-      <h3>技術スタック</h3>
-      <p>ChatGPT・Claude等のAI活用 / Next.js / TypeScript / Supabase / Tailwind CSS。業務効率化ツールやWebアプリの開発から、LP・サイト制作まで対応。</p>
-    </div>
-    <div class="about-card full">
-      <h3>ポジショニング</h3>
-      <p>医療・介護の現場知識 × AI × Web開発という掛け合わせにより、「現場は何に困っているのか」の把握から「どう作るか」まで一人でカバー。「作って終わり」ではなく、実際の運用に定着するまでを見据えて支援します。</p>
+    <p class="about-intro">
+      理学療法士として約20年、急性期から回復期リハビリ病棟まで幅広く勤務し、現在は主任としてリハビリ部門のマネジメントに携わっています。
+      その一方で、独学でAI活用とWebエンジニアリングを習得。
+      単なるWeb制作ではなく、「現場を理解した上で、本当に使われる仕組みを作ること」を大切にしています。
+    </p>
+    <div class="about-grid">
+      <div class="about-card">
+        <h3>現場の専門性</h3>
+        <p>理学療法士として約20年、急性期・回復期リハビリテーション病棟など多様な現場に従事。主任としてFIM評価・退院支援・カンファレンス運営・シフト管理などの部門運営も担当。</p>
+      </div>
+      <div class="about-card">
+        <h3>技術スタック</h3>
+        <p>ChatGPT・Claude等のAI活用 / Next.js / TypeScript / Supabase / Tailwind CSS。業務効率化ツールやWebアプリの開発から、LP・サイト制作まで対応。</p>
+      </div>
+      <div class="about-card">
+        <h3>ポジショニング</h3>
+        <p>医療・介護の現場知識 × AI × Web開発という掛け合わせにより、「現場は何に困っているのか」の把握から「どう作るか」まで一人でカバー。「作って終わり」ではなく、実際の運用に定着するまでを見据えて支援します。</p>
+      </div>
     </div>
   </div>
 </section>
 
-<div class="divider"></div>
+<!-- ── SERVICES + WHY CHOOSE（白背景の帯） ── -->
+<div class="band band--white">
 
-<!-- ── SERVICES ── -->
 <section id="services">
-  <p class="section-label">Services</p>
-  <div class="service-item">
-    <div class="service-head">
-      <h3>AI活用・業務改善支援</h3>
-      <span class="service-badge">MAIN</span>
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-index">02</span>
+        <p class="section-label">Services</p>
+      </div>
+      <div class="service-item">
+        <div class="service-head">
+          <span class="service-num">01</span>
+          <h3>AI活用・業務改善支援</h3>
+          <span class="service-badge">MAIN</span>
+        </div>
+        <p class="service-desc">ChatGPT・Claude等を活用した業務効率化、AIによる資料作成・文章作成の支援、業務フローの整理・改善提案、マニュアル作成。「何から手をつければいいかわからない」という段階からの相談に対応します。</p>
+      </div>
+      <div class="service-item">
+        <div class="service-head">
+          <span class="service-num">02</span>
+          <h3>業務効率化ツール・Webアプリ開発</h3>
+          <span class="service-badge">MAIN</span>
+        </div>
+        <p class="service-desc">患者管理・リハビリ記録・シフト管理・集計ダッシュボードなど、医療・介護現場の業務フローに即したツールの設計・開発。Excel・スプレッドシートの効率化にも対応。Next.js + Supabaseを中心に、現場が無理なく使い続けられるUXを実現します。</p>
+      </div>
+      <div class="service-item">
+        <div class="service-head">
+          <span class="service-num">03</span>
+          <h3>医療・ヘルスケア特化 LP・サイト制作</h3>
+          <span class="service-badge sub">AVAILABLE</span>
+        </div>
+        <p class="service-desc">クリニック・病院・介護施設・ヘルスケア事業者向けのLP・サイト制作。患者・利用者の目線から、不安を取り除く導線設計・わかりやすいCTA・診療科の整理を実現します。レスポンシブ対応。</p>
+      </div>
+      <div class="service-item">
+        <div class="service-head">
+          <span class="service-num">04</span>
+          <h3>医療×ITコンサルティング</h3>
+          <span class="service-badge sub">AVAILABLE</span>
+        </div>
+        <p class="service-desc">医療系スタートアップや開発チームへの臨床ドメイン提供。仕様レビュー・ユーザーストーリー作成・現場ヒアリング代行など、医療知識を活かした技術支援。</p>
+      </div>
     </div>
-    <p class="service-desc">ChatGPT・Claude等を活用した業務効率化、AIによる資料作成・文章作成の支援、業務フローの整理・改善提案、マニュアル作成。「何から手をつければいいかわからない」という段階からの相談に対応します。</p>
-  </div>
-  <div class="service-item">
-    <div class="service-head">
-      <h3>業務効率化ツール・Webアプリ開発</h3>
-      <span class="service-badge">MAIN</span>
+  </section>
+
+<section id="strengths" class="stacked-block" style="margin-top:clamp(56px,7vw,104px)">
+  <div class="wrap split">
+    <div class="split-head">
+      <div class="sec-head">
+        <span class="sec-index">03</span>
+        <p class="section-label">Why choose</p>
+      </div>
     </div>
-    <p class="service-desc">患者管理・リハビリ記録・シフト管理・集計ダッシュボードなど、医療・介護現場の業務フローに即したツールの設計・開発。Excel・スプレッドシートの効率化にも対応。Next.js + Supabaseを中心に、現場が無理なく使い続けられるUXを実現します。</p>
-  </div>
-  <div class="service-item">
-    <div class="service-head">
-      <h3>医療・ヘルスケア特化 LP・サイト制作</h3>
-      <span class="service-badge">AVAILABLE</span>
+    <div class="strength-list">
+      <div class="strength">
+        <span class="num">01</span>
+        <h4>要件定義の精度が高い</h4>
+        <p>臨床経験から「現場が何を必要としているか」を正確に把握。仕様の抜け漏れを最小化します。</p>
+      </div>
+      <div class="strength">
+        <span class="num">02</span>
+        <h4>医療用語・制度への深い理解</h4>
+        <p>FIM・ADL・退院支援加算など医療固有の概念をエンジニアに翻訳する必要がありません。</p>
+      </div>
+      <div class="strength">
+        <span class="num">03</span>
+        <h4>実務レベルの開発スキル</h4>
+        <p>患者管理Webアプリ・勤務表作成ツール・AIチャットシステムを独力で設計・実装・公開済み。</p>
+      </div>
+      <div class="strength">
+        <span class="num">04</span>
+        <h4>「作って終わり」にしない</h4>
+        <p>スタッフが無理なく使い続けられるか、という運用定着までを見据えて提案。進捗共有・認識合わせを大切にします。</p>
+      </div>
     </div>
-    <p class="service-desc">クリニック・病院・介護施設・ヘルスケア事業者向けのLP・サイト制作。患者・利用者の目線から、不安を取り除く導線設計・わかりやすいCTA・診療科の整理を実現します。レスポンシブ対応。</p>
-  </div>
-  <div class="service-item">
-    <div class="service-head">
-      <h3>医療×ITコンサルティング</h3>
-      <span class="service-badge">AVAILABLE</span>
-    </div>
-    <p class="service-desc">医療系スタートアップや開発チームへの臨床ドメイン提供。仕様レビュー・ユーザーストーリー作成・現場ヒアリング代行など、医療知識を活かした技術支援。</p>
   </div>
 </section>
 
-<div class="divider"></div>
-
-<!-- ── WHY CHOOSE ── -->
-<section id="strengths">
-  <p class="section-label">Why choose</p>
-  <div class="strength-list">
-    <div class="strength">
-      <h4>要件定義の精度が高い</h4>
-      <p>臨床経験から「現場が何を必要としているか」を正確に把握。仕様の抜け漏れを最小化します。</p>
-    </div>
-    <div class="strength">
-      <h4>医療用語・制度への深い理解</h4>
-      <p>FIM・ADL・退院支援加算など医療固有の概念をエンジニアに翻訳する必要がありません。</p>
-    </div>
-    <div class="strength">
-      <h4>実務レベルの開発スキル</h4>
-      <p>患者管理Webアプリ・勤務表作成ツール・AIチャットシステムを独力で設計・実装・公開済み。</p>
-    </div>
-    <div class="strength">
-      <h4>「作って終わり」にしない</h4>
-      <p>スタッフが無理なく使い続けられるか、という運用定着までを見据えて提案。進捗共有・認識合わせを大切にします。</p>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
+</div>
 
 <!-- ── CASE STUDY ── -->
-<section id="cases">
-  <p class="section-label">Case Study</p>
-  <div class="case-card">
-    <div>
-      <p class="case-tag">導入事例 01 — 病院リハビリ部門</p>
-      <h3 class="case-title">勤務表作成を、毎月3時間から30分に短縮</h3>
-      <p class="case-body">
-        回復期リハビリ病棟を持つ病院のリハビリ部門では、毎月約3時間かけて勤務表を手作業で作成していました。
-        スタッフの休み希望と必要人数のルールを突き合わせる調整は、ミスも起きやすい業務でした。
-        休み希望と人員配置ルールを登録すると自動でシフト案を生成するWebアプリを開発・導入した結果、作成時間は毎月30分に。
-        空いた時間を患者対応やスタッフ指導に充てられるようになりました。
-      </p>
-      <p class="case-note">
-        ※守秘のため施設名は非公開です。ほかにも書類テンプレート化による作成時間の短縮、在宅復帰スコアの開発など、現場での業務改善を継続中です。
-      </p>
+<section id="cases" class="band band--teal">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-index">04</span>
+      <p class="section-label">Case Study</p>
     </div>
-    <div class="case-result">
-      <div class="case-before">毎月 3時間</div>
-      <div class="case-arrow">↓</div>
-      <div class="case-after">30<small>分</small></div>
-      <div class="case-result-label">勤務表の作成時間</div>
+    <div class="case">
+      <div>
+        <p class="case-tag">導入事例 01 — 病院リハビリ部門</p>
+        <h3 class="case-title">勤務表作成を、毎月3時間から30分に短縮</h3>
+        <p class="case-body">
+          回復期リハビリ病棟を持つ病院のリハビリ部門では、毎月約3時間かけて勤務表を手作業で作成していました。
+          スタッフの休み希望と必要人数のルールを突き合わせる調整は、ミスも起きやすい業務でした。
+          休み希望と人員配置ルールを登録すると自動でシフト案を生成するWebアプリを開発・導入した結果、作成時間は毎月30分に。
+          空いた時間を患者対応やスタッフ指導に充てられるようになりました。
+        </p>
+        <p class="case-note">
+          ※守秘のため施設名は非公開です。ほかにも書類テンプレート化による作成時間の短縮、在宅復帰スコアの開発など、現場での業務改善を継続中です。
+        </p>
+      </div>
+      <div class="case-result">
+        <div class="case-before">毎月 3時間</div>
+        <div class="case-arrow">↓</div>
+        <div class="case-after">30<small>分</small></div>
+        <div class="case-result-label">勤務表の作成時間</div>
+      </div>
     </div>
   </div>
 </section>
-
-<div class="divider"></div>
 
 <!-- ── PORTFOLIO ── -->
-<section id="portfolio">
-  <p class="section-label">Portfolio</p>
-  <div class="portfolio-grid">
-
-    <!-- Webアプリ / 業務ツール -->
-    <p class="portfolio-sub">業務改善ツール / Webアプリ</p>
-
-    <div class="portfolio-card">
-      <img class="portfolio-thumb" src="images/rehab-app.png" alt="回復期病棟 患者管理Webアプリ">
-      <div class="portfolio-body">
-        <p class="portfolio-type">Webアプリ</p>
-        <h3 class="portfolio-title">回復期病棟 患者管理Webアプリ</h3>
-        <p class="portfolio-desc">FIMスコア管理・退院促進スコア・カンファアラートなど、回復期リハビリ病棟の業務フローに即した患者管理システム。</p>
-        <div class="portfolio-meta">
-          <div class="portfolio-meta-row"><span class="meta-key">制作期間</span><span class="meta-val">約2週間</span></div>
-          <div class="portfolio-meta-row"><span class="meta-key">使用技術</span><span class="meta-val">Next.js / TypeScript / Supabase / Tailwind CSS</span></div>
-          <div class="portfolio-meta-row"><span class="meta-key">こだわり</span><span class="meta-val">現場のFIM評価・退院支援・カンファレンス業務を忠実に再現。データ連動の自動アラートで見落としゼロを目指した設計。</span></div>
-        </div>
-        <div class="portfolio-links">
-          <a class="portfolio-link" href="https://rehab-ward-lp.vercel.app/" target="_blank">デモを見る →</a>
-          <a class="portfolio-link" href="https://github.com/gilvanianbird-arch/rehab-ward-management" target="_blank">GitHub →</a>
-        </div>
-        <div class="stack-row">
-          <span class="stack">Next.js</span><span class="stack">TypeScript</span><span class="stack">Supabase</span><span class="stack">Tailwind CSS</span><span class="stack">Vercel</span>
-        </div>
-      </div>
+<section id="portfolio" class="band">
+  <div class="wrap wide">
+    <div class="sec-head">
+      <span class="sec-index">05</span>
+      <p class="section-label">Portfolio</p>
     </div>
+    <div class="pf-grid">
 
-    <div class="portfolio-card">
-      <img class="portfolio-thumb" src="images/shift-scheduler.png" alt="勤務表管理システム">
-      <div class="portfolio-body">
-        <p class="portfolio-type">業務ツール</p>
-        <h3 class="portfolio-title">勤務表管理システム</h3>
-        <p class="portfolio-desc">スタッフの休み希望・必要人数ルールをもとに自動でシフトを生成。手動修正・印刷にも対応した医療・介護施設向けツール。<strong>病院リハビリ部門で実運用中（作成時間 毎月3時間→30分）。</strong></p>
-        <div class="portfolio-meta">
-          <div class="portfolio-meta-row"><span class="meta-key">制作期間</span><span class="meta-val">約1ヶ月</span></div>
-          <div class="portfolio-meta-row"><span class="meta-key">使用技術</span><span class="meta-val">HTML / CSS / JavaScript</span></div>
-          <div class="portfolio-meta-row"><span class="meta-key">こだわり</span><span class="meta-val">医療・介護現場の複雑なシフトルールを自動処理。印刷レイアウトまで徹底した実用性重視の業務ツール。</span></div>
+      <!-- Webアプリ / 業務ツール -->
+      <p class="pf-sub">業務改善ツール / Webアプリ</p>
+
+      <article class="pf-item feature">
+        <div class="pf-media">
+          <img class="pf-thumb" src="images/rehab-app.png" alt="回復期病棟 患者管理Webアプリ">
         </div>
-        <div class="portfolio-links">
-          <a class="portfolio-link" href="https://shift-scheduler-azf.pages.dev/" target="_blank">デモを見る →</a>
+        <div class="pf-body">
+          <p class="pf-type">Webアプリ</p>
+          <h3 class="pf-title">回復期病棟 患者管理Webアプリ</h3>
+          <p class="pf-desc">FIMスコア管理・退院促進スコア・カンファアラートなど、回復期リハビリ病棟の業務フローに即した患者管理システム。</p>
+          <div class="pf-meta">
+            <div class="pf-meta-row"><span class="meta-key">制作期間</span><span class="meta-val">約2週間</span></div>
+            <div class="pf-meta-row"><span class="meta-key">使用技術</span><span class="meta-val">Next.js / TypeScript / Supabase / Tailwind CSS</span></div>
+            <div class="pf-meta-row"><span class="meta-key">こだわり</span><span class="meta-val">現場のFIM評価・退院支援・カンファレンス業務を忠実に再現。データ連動の自動アラートで見落としゼロを目指した設計。</span></div>
+          </div>
+          <div class="pf-links">
+            <a class="pf-link" href="https://rehab-ward-lp.vercel.app/" target="_blank">デモを見る <span class="ar">→</span></a>
+            <a class="pf-link" href="https://github.com/gilvanianbird-arch/rehab-ward-management" target="_blank">GitHub <span class="ar">→</span></a>
+          </div>
+          <div class="stack-row">
+            <span class="stack">Next.js</span><span class="stack">TypeScript</span><span class="stack">Supabase</span><span class="stack">Tailwind CSS</span><span class="stack">Vercel</span>
+          </div>
         </div>
-        <div class="stack-row">
-          <span class="stack">HTML</span><span class="stack">CSS</span><span class="stack">JavaScript</span>
+      </article>
+
+      <article class="pf-item">
+        <div class="pf-media">
+          <img class="pf-thumb" src="images/shift-scheduler.png" alt="勤務表管理システム">
         </div>
-      </div>
+        <div class="pf-body">
+          <p class="pf-type">業務ツール</p>
+          <h3 class="pf-title">勤務表管理システム</h3>
+          <p class="pf-desc">スタッフの休み希望・必要人数ルールをもとに自動でシフトを生成。手動修正・印刷にも対応した医療・介護施設向けツール。<strong>病院リハビリ部門で実運用中（作成時間 毎月3時間→30分）。</strong></p>
+          <div class="pf-meta">
+            <div class="pf-meta-row"><span class="meta-key">制作期間</span><span class="meta-val">約1ヶ月</span></div>
+            <div class="pf-meta-row"><span class="meta-key">使用技術</span><span class="meta-val">HTML / CSS / JavaScript</span></div>
+            <div class="pf-meta-row"><span class="meta-key">こだわり</span><span class="meta-val">医療・介護現場の複雑なシフトルールを自動処理。印刷レイアウトまで徹底した実用性重視の業務ツール。</span></div>
+          </div>
+          <div class="pf-links">
+            <a class="pf-link" href="https://shift-scheduler-azf.pages.dev/" target="_blank">デモを見る <span class="ar">→</span></a>
+          </div>
+          <div class="stack-row">
+            <span class="stack">HTML</span><span class="stack">CSS</span><span class="stack">JavaScript</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="pf-item">
+        <div class="pf-media">
+          <img class="pf-thumb" src="images/ai-system.png" alt="AI社内システム">
+        </div>
+        <div class="pf-body">
+          <p class="pf-type">AIアプリ</p>
+          <h3 class="pf-title">AI社内システム</h3>
+          <p class="pf-desc">ブラウザ上で動作する4部署対応のAIチャットシステム。部門別に自動振り分けするリーダーエージェントを搭載。</p>
+          <div class="pf-meta">
+            <div class="pf-meta-row"><span class="meta-key">制作期間</span><span class="meta-val">約1週間</span></div>
+            <div class="pf-meta-row"><span class="meta-key">使用技術</span><span class="meta-val">HTML / CSS / JavaScript / Claude API</span></div>
+            <div class="pf-meta-row"><span class="meta-key">こだわり</span><span class="meta-val">4部署のAIを1画面から呼び出せるUIを設計。リーダーエージェントの自動振り分けでユーザーが操作を意識しない体験を実現。</span></div>
+          </div>
+          <div class="pf-links">
+            <a class="pf-link" href="https://claude.ai/public/artifacts/bf7926b5-8731-4b7d-a0f7-bbbeaa1735f7" target="_blank">デモを見る <span class="ar">→</span></a>
+          </div>
+          <div class="stack-row">
+            <span class="stack">HTML</span><span class="stack">CSS</span><span class="stack">JavaScript</span><span class="stack">Claude API</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- LP / サイト制作 -->
+      <p class="pf-sub">LP / サイト制作</p>
+
+      <article class="pf-item">
+        <div class="pf-media">
+          <img class="pf-thumb" src="images/sakura-hospital.png" alt="さくら総合病院 コーポレートサイト">
+        </div>
+        <div class="pf-body">
+          <p class="pf-type">医療機関向けLP</p>
+          <h3 class="pf-title">さくら総合病院 サイト</h3>
+          <p class="pf-desc">診療科・医師紹介・アクセスを備えた病院向けコーポレートサイト。予約導線・診療時間・患者の声を含むフルページ構成。</p>
+          <div class="pf-meta">
+            <div class="pf-meta-row"><span class="meta-key">制作期間</span><span class="meta-val">約2週間</span></div>
+            <div class="pf-meta-row"><span class="meta-key">使用技術</span><span class="meta-val">HTML / CSS / JavaScript</span></div>
+            <div class="pf-meta-row"><span class="meta-key">こだわり</span><span class="meta-val">理学療法士の経験から「患者が不安なく来院できる」導線を設計。受診ステップフロー・症状別診療科ガイド・フローティングCTAを実装。</span></div>
+          </div>
+          <div class="pf-links">
+            <a class="pf-link" href="https://gilvanianbird-arch.github.io/my-second-web-app/" target="_blank">デモを見る <span class="ar">→</span></a>
+          </div>
+          <div class="stack-row">
+            <span class="stack">HTML</span><span class="stack">CSS</span><span class="stack">JavaScript</span><span class="stack">レスポンシブ対応</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="pf-item">
+        <div class="pf-media">
+          <img class="pf-thumb" src="images/lp-lumiere.png" alt="LUMIÈRE ファンデーションLP">
+        </div>
+        <div class="pf-body">
+          <p class="pf-type">商品LP</p>
+          <h3 class="pf-title">LUMIÈRE — 商品LP</h3>
+          <p class="pf-desc">高級コスメブランドをイメージした商品LP。ダークトーンの洗練されたデザインとスクロールアニメーションを実装。</p>
+          <div class="pf-meta">
+            <div class="pf-meta-row"><span class="meta-key">制作期間</span><span class="meta-val">約1週間</span></div>
+            <div class="pf-meta-row"><span class="meta-key">使用技術</span><span class="meta-val">HTML / CSS / JavaScript</span></div>
+            <div class="pf-meta-row"><span class="meta-key">こだわり</span><span class="meta-val">ダークトーン×スクロールアニメーションで高級感を演出。商品の世界観をビジュアルで伝えることを優先したデザイン設計。</span></div>
+          </div>
+          <div class="pf-links">
+            <a class="pf-link" href="https://gilvanianbird-arch.github.io/portfolio-lp/" target="_blank">デモを見る <span class="ar">→</span></a>
+          </div>
+          <div class="stack-row">
+            <span class="stack">HTML</span><span class="stack">CSS</span><span class="stack">JavaScript</span><span class="stack">レスポンシブ対応</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="pf-item">
+        <div class="pf-media">
+          <img class="pf-thumb" src="images/lp-ramen.jpg" alt="麺処 黒虎 飲食店LP">
+        </div>
+        <div class="pf-body">
+          <p class="pf-type">飲食店向けLP</p>
+          <h3 class="pf-title">麺処 黒虎 — 飲食店LP</h3>
+          <p class="pf-desc">ラーメン専門店向けのランディングページ。「美味しそう・行きたい」と思わせることを重視し、実写フリー素材・ホバーアニメーション・Googleマップ埋め込み・テイクアウト導線を実装。Cloudflare Pagesで公開済み。</p>
+          <div class="pf-meta">
+            <div class="pf-meta-row"><span class="meta-key">制作期間</span><span class="meta-val">約1週間</span></div>
+            <div class="pf-meta-row"><span class="meta-key">使用技術</span><span class="meta-val">Next.js / TypeScript / Tailwind CSS / Cloudflare Pages</span></div>
+            <div class="pf-meta-row"><span class="meta-key">こだわり</span><span class="meta-val">実写写真・ホバーアニメーション・Googleマップ・テイクアウト/デリバリー導線・スマホ対応まで一貫して実装。参考サイトのカラーパレット・フォントを分析して再現。</span></div>
+          </div>
+          <div class="pf-links">
+            <a class="pf-link" href="https://freelance-lp.pages.dev" target="_blank">デモを見る <span class="ar">→</span></a>
+          </div>
+          <div class="stack-row">
+            <span class="stack">Next.js</span><span class="stack">TypeScript</span><span class="stack">Tailwind CSS</span><span class="stack">Cloudflare Pages</span><span class="stack">レスポンシブ対応</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="pf-item">
+        <div class="pf-media">
+          <img class="pf-thumb" src="images/lp-consulting.png" alt="みらい経営パートナーズ BtoB向けLP">
+        </div>
+        <div class="pf-body">
+          <p class="pf-type">BtoB向けLP</p>
+          <h3 class="pf-title">みらい経営パートナーズ — 経営コンサルLP</h3>
+          <p class="pf-desc">中小企業向け経営コンサルティング会社の架空LP。課題共感→実績訴求→サービス→代表紹介→支援事例の導線を設計し、BtoBサイトの信頼感を演出。glass effectとハンバーガーメニューを実装し、PC・スマホ双方に対応。</p>
+          <div class="pf-meta">
+            <div class="pf-meta-row"><span class="meta-key">制作期間</span><span class="meta-val">約2週間</span></div>
+            <div class="pf-meta-row"><span class="meta-key">使用技術</span><span class="meta-val">Next.js / TypeScript / Tailwind CSS / Cloudflare Pages</span></div>
+            <div class="pf-meta-row"><span class="meta-key">こだわり</span><span class="meta-val">CSS <code>backdrop-filter</code> によるglass effectをHeroに実装。<code>useState</code> を使ったハンバーガーメニューでモバイル対応。Tailwind CSSのユーティリティクラスで統一的なデザインシステムを構築し、Cloudflare Pagesで静的デプロイ。</span></div>
+          </div>
+          <div class="pf-links">
+            <a class="pf-link" href="https://mirai-consulting-lp.pages.dev" target="_blank">デモを見る <span class="ar">→</span></a>
+            <a class="pf-link" href="https://github.com/gilvanianbird-arch/mirai-consulting-lp" target="_blank">GitHub <span class="ar">→</span></a>
+          </div>
+          <div class="stack-row">
+            <span class="stack">Next.js</span><span class="stack">TypeScript</span><span class="stack">Tailwind CSS</span><span class="stack">Cloudflare Pages</span><span class="stack">glass effect</span><span class="stack">レスポンシブ対応</span>
+          </div>
+        </div>
+      </article>
+
     </div>
-
-    <div class="portfolio-card">
-      <img class="portfolio-thumb" src="images/ai-system.png" alt="AI社内システム">
-      <div class="portfolio-body">
-        <p class="portfolio-type">AIアプリ</p>
-        <h3 class="portfolio-title">AI社内システム</h3>
-        <p class="portfolio-desc">ブラウザ上で動作する4部署対応のAIチャットシステム。部門別に自動振り分けするリーダーエージェントを搭載。</p>
-        <div class="portfolio-meta">
-          <div class="portfolio-meta-row"><span class="meta-key">制作期間</span><span class="meta-val">約1週間</span></div>
-          <div class="portfolio-meta-row"><span class="meta-key">使用技術</span><span class="meta-val">HTML / CSS / JavaScript / Claude API</span></div>
-          <div class="portfolio-meta-row"><span class="meta-key">こだわり</span><span class="meta-val">4部署のAIを1画面から呼び出せるUIを設計。リーダーエージェントの自動振り分けでユーザーが操作を意識しない体験を実現。</span></div>
-        </div>
-        <div class="portfolio-links">
-          <a class="portfolio-link" href="https://claude.ai/public/artifacts/bf7926b5-8731-4b7d-a0f7-bbbeaa1735f7" target="_blank">デモを見る →</a>
-        </div>
-        <div class="stack-row">
-          <span class="stack">HTML</span><span class="stack">CSS</span><span class="stack">JavaScript</span><span class="stack">Claude API</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- LP / サイト制作 -->
-    <p class="portfolio-sub">LP / サイト制作</p>
-
-    <div class="portfolio-card">
-      <img class="portfolio-thumb" src="images/sakura-hospital.png" alt="さくら総合病院 コーポレートサイト">
-      <div class="portfolio-body">
-        <p class="portfolio-type">医療機関向けLP</p>
-        <h3 class="portfolio-title">さくら総合病院 サイト</h3>
-        <p class="portfolio-desc">診療科・医師紹介・アクセスを備えた病院向けコーポレートサイト。予約導線・診療時間・患者の声を含むフルページ構成。</p>
-        <div class="portfolio-meta">
-          <div class="portfolio-meta-row"><span class="meta-key">制作期間</span><span class="meta-val">約2週間</span></div>
-          <div class="portfolio-meta-row"><span class="meta-key">使用技術</span><span class="meta-val">HTML / CSS / JavaScript</span></div>
-          <div class="portfolio-meta-row"><span class="meta-key">こだわり</span><span class="meta-val">理学療法士の経験から「患者が不安なく来院できる」導線を設計。受診ステップフロー・症状別診療科ガイド・フローティングCTAを実装。</span></div>
-        </div>
-        <div class="portfolio-links">
-          <a class="portfolio-link" href="https://gilvanianbird-arch.github.io/my-second-web-app/" target="_blank">デモを見る →</a>
-        </div>
-        <div class="stack-row">
-          <span class="stack">HTML</span><span class="stack">CSS</span><span class="stack">JavaScript</span><span class="stack">レスポンシブ対応</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="portfolio-card">
-      <img class="portfolio-thumb" src="images/lp-lumiere.png" alt="LUMIÈRE ファンデーションLP">
-      <div class="portfolio-body">
-        <p class="portfolio-type">商品LP</p>
-        <h3 class="portfolio-title">LUMIÈRE — 商品LP</h3>
-        <p class="portfolio-desc">高級コスメブランドをイメージした商品LP。ダークトーンの洗練されたデザインとスクロールアニメーションを実装。</p>
-        <div class="portfolio-meta">
-          <div class="portfolio-meta-row"><span class="meta-key">制作期間</span><span class="meta-val">約1週間</span></div>
-          <div class="portfolio-meta-row"><span class="meta-key">使用技術</span><span class="meta-val">HTML / CSS / JavaScript</span></div>
-          <div class="portfolio-meta-row"><span class="meta-key">こだわり</span><span class="meta-val">ダークトーン×スクロールアニメーションで高級感を演出。商品の世界観をビジュアルで伝えることを優先したデザイン設計。</span></div>
-        </div>
-        <div class="portfolio-links">
-          <a class="portfolio-link" href="https://gilvanianbird-arch.github.io/portfolio-lp/" target="_blank">デモを見る →</a>
-        </div>
-        <div class="stack-row">
-          <span class="stack">HTML</span><span class="stack">CSS</span><span class="stack">JavaScript</span><span class="stack">レスポンシブ対応</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="portfolio-card">
-      <img class="portfolio-thumb" src="images/lp-ramen.jpg" alt="麺処 黒虎 飲食店LP">
-      <div class="portfolio-body">
-        <p class="portfolio-type">飲食店向けLP</p>
-        <h3 class="portfolio-title">麺処 黒虎 — 飲食店LP</h3>
-        <p class="portfolio-desc">ラーメン専門店向けのランディングページ。「美味しそう・行きたい」と思わせることを重視し、実写フリー素材・ホバーアニメーション・Googleマップ埋め込み・テイクアウト導線を実装。Cloudflare Pagesで公開済み。</p>
-        <div class="portfolio-meta">
-          <div class="portfolio-meta-row"><span class="meta-key">制作期間</span><span class="meta-val">約1週間</span></div>
-          <div class="portfolio-meta-row"><span class="meta-key">使用技術</span><span class="meta-val">Next.js / TypeScript / Tailwind CSS / Cloudflare Pages</span></div>
-          <div class="portfolio-meta-row"><span class="meta-key">こだわり</span><span class="meta-val">実写写真・ホバーアニメーション・Googleマップ・テイクアウト/デリバリー導線・スマホ対応まで一貫して実装。参考サイトのカラーパレット・フォントを分析して再現。</span></div>
-        </div>
-        <div class="portfolio-links">
-          <a class="portfolio-link" href="https://freelance-lp.pages.dev" target="_blank">デモを見る →</a>
-        </div>
-        <div class="stack-row">
-          <span class="stack">Next.js</span><span class="stack">TypeScript</span><span class="stack">Tailwind CSS</span><span class="stack">Cloudflare Pages</span><span class="stack">レスポンシブ対応</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="portfolio-card">
-      <img class="portfolio-thumb" src="images/lp-consulting.png" alt="みらい経営パートナーズ BtoB向けLP">
-      <div class="portfolio-body">
-        <p class="portfolio-type">BtoB向けLP</p>
-        <h3 class="portfolio-title">みらい経営パートナーズ — 経営コンサルLP</h3>
-        <p class="portfolio-desc">中小企業向け経営コンサルティング会社の架空LP。課題共感→実績訴求→サービス→代表紹介→支援事例の導線を設計し、BtoBサイトの信頼感を演出。glass effectとハンバーガーメニューを実装し、PC・スマホ双方に対応。</p>
-        <div class="portfolio-meta">
-          <div class="portfolio-meta-row"><span class="meta-key">制作期間</span><span class="meta-val">約2週間</span></div>
-          <div class="portfolio-meta-row"><span class="meta-key">使用技術</span><span class="meta-val">Next.js / TypeScript / Tailwind CSS / Cloudflare Pages</span></div>
-          <div class="portfolio-meta-row"><span class="meta-key">こだわり</span><span class="meta-val">CSS <code>backdrop-filter</code> によるglass effectをHeroに実装。<code>useState</code> を使ったハンバーガーメニューでモバイル対応。Tailwind CSSのユーティリティクラスで統一的なデザインシステムを構築し、Cloudflare Pagesで静的デプロイ。</span></div>
-        </div>
-        <div class="portfolio-links">
-          <a class="portfolio-link" href="https://mirai-consulting-lp.pages.dev" target="_blank">デモを見る →</a>
-          <a class="portfolio-link" href="https://github.com/gilvanianbird-arch/mirai-consulting-lp" target="_blank">GitHub →</a>
-        </div>
-        <div class="stack-row">
-          <span class="stack">Next.js</span><span class="stack">TypeScript</span><span class="stack">Tailwind CSS</span><span class="stack">Cloudflare Pages</span><span class="stack">glass effect</span><span class="stack">レスポンシブ対応</span>
-        </div>
-      </div>
-    </div>
-
   </div>
 </section>
-
-<div class="divider"></div>
 
 <!-- ── CONTACT ── -->
-<section id="contact">
-  <p class="section-label">Contact</p>
-  <div class="contact-form-wrap">
-    <div class="contact-form-info">
-      <h2>お問い合わせ</h2>
-      <p>AI活用・業務効率化・Webサイト制作・業務ツール開発など、お気軽にご相談ください。「こんなことはできますか？」という段階でのご相談も歓迎です。通常2営業日以内にご返信いたします。</p>
-      <div class="contact-cta-links">
-        <a class="contact-btn primary" href="https://crowdworks.jp/public/employees/6603392?ref=share_url_wkprofile" target="_blank">Crowdworks でのご依頼</a>
-        <a class="contact-btn" href="https://x.com/YasunoteWorks/" target="_blank">X (Twitter)</a>
-        <a class="contact-btn" href="https://note.com/yasunote_works" target="_blank">note</a>
-      </div>
+<section id="contact" class="band band--white">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-index">06</span>
+      <p class="section-label">Contact</p>
     </div>
-    <div class="contact-form-box">
-      <input id="cf-name" type="text" placeholder="お名前" required>
-      <input id="cf-email" type="email" placeholder="メールアドレス" required>
-      <input id="cf-subject" type="text" placeholder="件名（例：業務効率化のご相談）">
-      <textarea id="cf-message" placeholder="お問い合わせ内容をご記入ください" required></textarea>
-      <button id="cf-submit" type="button">送信する →</button>
+    <div class="contact-form-wrap">
+      <div class="contact-form-info">
+        <h2>お問い合わせ</h2>
+        <p>AI活用・業務効率化・Webサイト制作・業務ツール開発など、お気軽にご相談ください。「こんなことはできますか？」という段階でのご相談も歓迎です。通常2営業日以内にご返信いたします。</p>
+        <div class="contact-cta-links">
+          <a class="contact-btn primary" href="https://crowdworks.jp/public/employees/6603392?ref=share_url_wkprofile" target="_blank">Crowdworks でのご依頼</a>
+          <a class="contact-btn" href="https://x.com/YasunoteWorks/" target="_blank">X (Twitter) <span class="ar">→</span></a>
+          <a class="contact-btn" href="https://note.com/yasunote_works" target="_blank">note <span class="ar">→</span></a>
+        </div>
+      </div>
+      <div class="contact-form-box">
+        <input id="cf-name" type="text" placeholder="お名前" required>
+        <input id="cf-email" type="email" placeholder="メールアドレス" required>
+        <input id="cf-subject" type="text" placeholder="件名（例：業務効率化のご相談）">
+        <textarea id="cf-message" placeholder="お問い合わせ内容をご記入ください" required></textarea>
+        <button id="cf-submit" type="button">送信する <span class="ar">→</span></button>
+      </div>
     </div>
   </div>
 </section>
 
-<footer>© 2026 Yasunote Works — All Rights Reserved</footer>
+<footer>
+  <div class="wrap wide footer-inner">
+    <span>© 2026 Yasunote Works</span>
+    <span>All Rights Reserved</span>
+  </div>
+</footer>
 
 <script>
   document.getElementById('cf-submit').addEventListener('click', function() {
@@ -886,6 +979,91 @@
       + '?subject=' + encodeURIComponent(subject)
       + '&body='    + encodeURIComponent(body);
   });
+</script>
+
+<script>
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* 成果数字をカウントアップ用に span 化（JSが動かない場合はそのまま表示） */
+  var caseNum = document.querySelector('.case-after');
+  var numSpan = null;
+  if (caseNum && caseNum.firstChild && caseNum.firstChild.nodeType === 3) {
+    numSpan = document.createElement('span');
+    numSpan.className = 'cnum';
+    numSpan.textContent = caseNum.firstChild.nodeValue.trim();
+    caseNum.replaceChild(numSpan, caseNum.firstChild);
+  }
+
+  if (reduce || !('IntersectionObserver' in window)) return;
+
+  /* 1. Hero の初回表示（順番に控えめなフェードイン） */
+  var heroSeq = [
+    ['.hero-eyebrow', 0], ['.hero-name', .1], ['.hero-lead', .2],
+    ['.tag-row', .28], ['.hero-badge', .36], ['.hero-visual', .3]
+  ];
+  heroSeq.forEach(function(item){
+    var el = document.querySelector(item[0]);
+    if (!el) return;
+    el.classList.add('hero-anim');
+    el.style.setProperty('--d', item[1] + 's');
+  });
+  var showHero = function(){
+    document.querySelectorAll('.hero-anim').forEach(function(el){ el.classList.add('in'); });
+  };
+  requestAnimationFrame(function(){ requestAnimationFrame(showHero); });
+  setTimeout(showHero, 400);
+
+  /* 2. スクロール Reveal（一度表示したら監視を解除） */
+  var sel = '.stats .stat-item,#about .sec-head,#about .about-intro,.about-card,'
+          + '#services .sec-head,.service-item,#strengths .split-head,.strength,'
+          + '#cases .sec-head,#cases .case > div,#portfolio .sec-head,.pf-sub,.pf-item,'
+          + '#contact .sec-head,.contact-form-info,.contact-form-box';
+  var targets = [].slice.call(document.querySelectorAll(sel));
+  targets.forEach(function(el){ el.classList.add('reveal'); });
+
+  var ioFired = false;
+  var io = new IntersectionObserver(function(entries){
+    ioFired = true;
+    var i = 0;
+    entries.forEach(function(entry){
+      if (!entry.isIntersecting) return;
+      entry.target.style.transitionDelay = (Math.min(i, 4) * 0.07) + 's';
+      entry.target.classList.add('in');
+      io.unobserve(entry.target);
+      i++;
+    });
+  }, { threshold: .12, rootMargin: '0px 0px -6% 0px' });
+  targets.forEach(function(el){ io.observe(el); });
+  setTimeout(function(){
+    if (ioFired) return;
+    targets.forEach(function(el){ el.classList.add('in'); });
+  }, 3000);
+
+  /* 3. Case Study の成果数字を軽くカウントアップ */
+  if (numSpan) {
+    var goal = parseInt(numSpan.textContent, 10);
+    if (!isNaN(goal)) {
+      var io2 = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if (!entry.isIntersecting) return;
+          io2.unobserve(entry.target);
+          var start = null, dur = 1000;
+          numSpan.textContent = '0';
+          requestAnimationFrame(function step(now){
+            if (start === null) start = now;
+            var p = Math.min(1, (now - start) / dur);
+            numSpan.textContent = Math.round(goal * (1 - Math.pow(1 - p, 3)));
+            if (p < 1) requestAnimationFrame(step);
+          });
+          /* rAF が止まる環境でも最終値は必ず表示する */
+          setTimeout(function(){ numSpan.textContent = goal; }, dur + 400);
+        });
+      }, { threshold: .4 });
+      io2.observe(caseNum);
+    }
+  }
+})();
 </script>
 
 </body>
